@@ -101,6 +101,15 @@ export const mentors = [
   },
   {
     id: 2,
+    name: "Prof. Seethalekshmi K",
+    role: "President, IIC, IET Lucknow",
+    image: "/seethalekshmi.jpg",
+    alt: "Prof. Seethalekshmi K - President, IIC, IET Lucknow",
+    bio: "Accomplished academician and innovation champion driving institutional incubation, industry-academia partnerships, and entrepreneurial initiatives across IET Lucknow.",
+    linkedin: "https://www.linkedin.com/in/seethalekshmi-k-a92b4822/",
+  },
+  {
+    id: 3,
     name: "Dr. Pushkar Tripathi",
     role: "Chairman, IIC IET Lucknow",
     image: "/pushkar.jpg",
@@ -109,22 +118,13 @@ export const mentors = [
     linkedin: "https://www.linkedin.com/in/pushkar-tripathi-9437863/",
   },
   {
-    id: 3,
+    id: 4,
     name: "Dr. Anurag Verma",
     role: "Faculty Coordinator, E-Cell IET Lucknow",
     image: "/anurag.jpg",
     alt: "Dr. Anurag Verma - Faculty Coordinator, E-Cell IET Lucknow",
     bio: "Pioneered the entrepreneurial movement at IET Lucknow, dedicated to mentoring budding founders and bridging academia with startups.",
     linkedin: "https://www.linkedin.com/in/anurag-verma-phd-%F0%9F%92%A1-59a1bbbb/",
-  },
-  {
-    id: 4,
-    name: "Prof. Seethalekshmi K",
-    role: "President, IIC, IET Lucknow",
-    image: "/seethalekshmi.jpg",
-    alt: "Prof. Seethalekshmi K - President, IIC, IET Lucknow",
-    bio: "Accomplished academician and innovation champion driving institutional incubation, industry-academia partnerships, and entrepreneurial initiatives across IET Lucknow.",
-    linkedin: "https://www.linkedin.com/in/seethalekshmi-k-a92b4822/",
   },
 ];
 

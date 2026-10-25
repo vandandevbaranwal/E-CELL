@@ -102,19 +102,6 @@ const About = () => {
               </motion.div>
             ))}
           </div>
-
-          {/* Verbatim Closing Note */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="mt-12 text-center max-w-2xl mx-auto"
-          >
-            <p className="text-sm text-muted-foreground italic">
-              &ldquo;By fostering a culture of creativity, risk-taking, and problem-solving, E-Cell IET Lucknow serves as a launchpad for future leaders and changemakers.&rdquo;
-            </p>
-          </motion.div>
         </div>
       </TracingBeam>
     </section>

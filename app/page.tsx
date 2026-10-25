@@ -39,7 +39,13 @@ const Home = () => {
         <Hero onOpenPitchModal={handleOpenPitch} />
         <About />
         <Services />
-        <EventsSection />
+      </div>
+
+      {/* Full-width Edge-to-Edge Events Marquee Showcase */}
+      <EventsSection />
+
+      {/* Main Body Content Sections (Continued) */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Jordon />
         <Blogssec />
         <Approach />

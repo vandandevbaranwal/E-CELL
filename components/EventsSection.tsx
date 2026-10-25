@@ -167,15 +167,15 @@ export const EventsSection = () => {
         </motion.div>
       </div>
 
-      {/* ── Marquee Bands Container (Edge-to-Edge with Gradient Vignette) ── */}
+      {/* ── Marquee Bands Container (Full-Bleed Across Entire Screen Width) ── */}
       <div className="relative w-full overflow-hidden py-4 group">
-        {/* Left & Right Fade Vignettes */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none" />
+        {/* Left & Right Subtle Fade Vignettes */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-background via-background/60 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-background via-background/60 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Sliding Left */}
-        <div className="flex w-max space-x-5 animate-marquee group-hover:[animation-play-state:paused] mb-5">
-          {[...MARQUEE_ROW_1, ...MARQUEE_ROW_1].map((item, idx) => (
+        {/* Row 1: Sliding Smoothly from Left to Right */}
+        <div className="flex w-max space-x-5 animate-marquee-reverse group-hover:[animation-play-state:paused] mb-5">
+          {[...MARQUEE_ROW_1, ...MARQUEE_ROW_1, ...MARQUEE_ROW_1].map((item, idx) => (
             <Link
               key={`row1-${idx}`}
               href="/events"
@@ -218,9 +218,9 @@ export const EventsSection = () => {
           ))}
         </div>
 
-        {/* Row 2: Sliding Right (Reverse) */}
-        <div className="flex w-max space-x-5 animate-marquee-reverse group-hover:[animation-play-state:paused]">
-          {[...MARQUEE_ROW_2, ...MARQUEE_ROW_2].map((item, idx) => (
+        {/* Row 2: Sliding Smoothly from Left to Right (Alternative Speed) */}
+        <div className="flex w-max space-x-5 animate-marquee-reverse-fast group-hover:[animation-play-state:paused]">
+          {[...MARQUEE_ROW_2, ...MARQUEE_ROW_2, ...MARQUEE_ROW_2].map((item, idx) => (
             <Link
               key={`row2-${idx}`}
               href="/events"
@@ -273,7 +273,7 @@ export const EventsSection = () => {
               <span>Full Archive Available</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold font-heading text-foreground">
-              Explore All 13 Events &amp; Detailed Annual Reports
+              Explore All Events &amp; Details
             </h3>
             <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-xl">
               Filter by competitions, hackathons, speaker conclaves, and workshops with dates, locations, and outcomes.
@@ -285,7 +285,7 @@ export const EventsSection = () => {
               href="/events"
               className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-7 py-3.5 text-sm font-bold text-black shadow-[0_4px_20px_rgba(197,161,69,0.3)] transition-all hover:brightness-110 active:scale-95 group"
             >
-              <span>View All 13 Events</span>
+              <span>View All Events</span>
               <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

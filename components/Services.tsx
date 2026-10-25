@@ -70,11 +70,15 @@ const Services = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ecell-gold/10 border border-ecell-gold/25 text-ecell-gold text-xs font-semibold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(197,161,69,0.15)]">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>The Founder&apos;s Launchpad</span>
+          </div>
           <h2 className="heading mb-4 text-foreground">
-            Our <span className="text-ecell-gold">Services</span>
+            The Innovation <span className="text-ecell-gold">Ecosystem</span>
           </h2>
           <p className="text-sm md:text-base text-muted-foreground">
-            Empowering students with end-to-end entrepreneurial support, resources, and institutional backing.
+            Empowering student builders with end-to-end venture incubation, founder mentorship, seed capital access, and prototyping resources.
           </p>
         </motion.div>
 

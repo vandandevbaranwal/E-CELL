@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Rocket, CheckCircle2, Send, Lightbulb, Users, Megaphone, Palette, Cog } from "lucide-react";
+import { X, Rocket, CheckCircle2, Send, Lightbulb, Users, Megaphone, Palette, Cog, Loader2, AlertCircle } from "lucide-react";
 
 interface JoinModalProps {
   isOpen: boolean;
@@ -17,15 +17,48 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
   const [branchYear, setBranchYear] = useState("");
   const [summary, setSummary] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Connected to student pitch intake
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_SCRIPT_URL;
+
+    try {
+      if (scriptUrl) {
+        const formData = new FormData();
+        formData.append("timestamp", new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }));
+        formData.append("domain", selectedRole);
+        formData.append("fullName", fullName);
+        formData.append("email", email);
+        formData.append("branchYear", branchYear);
+        formData.append("summary", summary);
+
+        await fetch(scriptUrl, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors",
+        });
+      } else {
+        // Fallback delay when URL is not yet configured
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Submission failed:", err);
+      setErrorMessage("Something went wrong while submitting. Please try again or reach out to E-Cell directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
     setSubmitted(false);
+    setIsSubmitting(false);
+    setErrorMessage(null);
     setFullName("");
     setEmail("");
     setBranchYear("");
@@ -200,13 +233,31 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   />
                 </div>
 
+                {/* Error Banner */}
+                {errorMessage && (
+                  <div className="flex items-center gap-2 p-3 text-xs text-red-400 bg-red-950/40 border border-red-800/50 rounded-lg">
+                    <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 {/* Submit CTA */}
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-lg bg-gradient-to-r from-ecell-gold to-ecell-gold-light text-black font-bold text-sm flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-[0_4px_20px_rgba(197,161,69,0.3)] mt-2"
+                  disabled={isSubmitting}
+                  className="w-full py-3 rounded-lg bg-gradient-to-r from-ecell-gold to-ecell-gold-light text-black font-bold text-sm flex items-center justify-center gap-2 hover:brightness-110 disabled:opacity-75 disabled:cursor-not-allowed transition-all shadow-[0_4px_20px_rgba(197,161,69,0.3)] mt-2"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Pitch for Incubation</span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-black" />
+                      <span>Submitting to Google Sheet...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Submit Pitch for Incubation</span>
+                    </>
+                  )}
                 </button>
               </form>
             </div>

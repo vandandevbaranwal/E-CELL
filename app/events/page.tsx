@@ -114,7 +114,7 @@ export default function EventsPage() {
             </h1>
 
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              A comprehensive chronicle of the 13 flagship competitions, buildathons, technical workshops, and conclaves conducted by Entrepreneurship Cell, IET Lucknow.
+              A comprehensive chronicle of all the flagship competitions, buildathons, technical workshops, and conclaves conducted by Entrepreneurship Cell, IET Lucknow.
             </p>
 
             {/* Quick Summary Pill Strip */}

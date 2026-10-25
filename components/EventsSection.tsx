@@ -162,7 +162,7 @@ export const EventsSection = () => {
           </h2>
 
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            From 12-hour high-stakes hackathons to licensed TEDx conclaves, freshers&apos; quizzes, and campus auctions. Relive the glimpses of 13 events conducted by E-Cell IET Lucknow.
+            From 12-hour high-stakes hackathons to licensed TEDx conclaves, freshers&apos; quizzes, and campus auctions. Relive the glimpses of events conducted by E-Cell IET Lucknow.
           </p>
         </motion.div>
       </div>

@@ -27,7 +27,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import CursorGlow from "@/components/ui/CursorGlow";
-import TeamBackgroundAnimation from "@/components/ui/TeamBackgroundAnimation";
+import EventsBackgroundAnimation from "@/components/ui/EventsBackgroundAnimation";
 
 const CATEGORIES = [
   { id: "all", label: "All Events" },
@@ -78,7 +78,7 @@ export default function EventsPage() {
     <main className="relative bg-background text-foreground min-h-screen flex flex-col justify-between overflow-x-hidden w-full">
       <ScrollProgress />
       <CursorGlow />
-      <TeamBackgroundAnimation />
+      <EventsBackgroundAnimation />
       <ScrollToTop />
 
       {/* Sticky Edge-to-Edge Navigation */}

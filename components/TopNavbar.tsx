@@ -66,8 +66,9 @@ export default function TopNavbar() {
     "bg-ecell-gold/15 dark:bg-ecell-gold/20 border border-ecell-gold/25 rounded-xl";
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/85 dark:bg-[#0C0F1A]/90 backdrop-blur-xl border-b border-border/40 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <div className="w-full">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full bg-background/90 dark:bg-[#0C0F1A]/95 backdrop-blur-2xl border-b border-border/50 shadow-[0_10px_35px_-10px_rgba(0,0,0,0.6)] transition-all">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         {/* Left: Official Insignia Logo and Identity */}
         <Link href="/" className="flex items-center gap-3 group shrink-0">
           <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full p-[2px] bg-gradient-to-tr from-ecell-gold via-ecell-gold-light to-ecell-gold-dark/40 shadow-[0_0_12px_rgba(197,161,69,0.3)]">
@@ -290,6 +291,9 @@ export default function TopNavbar() {
           </nav>
         </div>
       )}
-    </header>
+      </header>
+      {/* Structural layout spacer so page content starts cleanly below the fixed topbar */}
+      <div className="h-20 w-full shrink-0 pointer-events-none" aria-hidden="true" />
+    </div>
   );
 }

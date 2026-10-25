@@ -68,7 +68,7 @@ const Footer = () => {
                 <Radio className="w-4 h-4" />
               </a>
               <a
-                href="mailto:ecell@ietlucknow.ac.in"
+                href="mailto:connect.ecell@ietlucknow.ac.in"
                 aria-label="Email E-Cell Support"
                 className="w-10 h-10 rounded-xl border border-zinc-700/70 bg-[#12182B] hover:border-ecell-gold hover:bg-ecell-gold/15 text-zinc-300 hover:text-ecell-gold flex items-center justify-center transition-all shadow-sm"
               >
@@ -185,10 +185,10 @@ const Footer = () => {
             <div className="pt-3 border-t border-zinc-800">
               <span className="block text-xs text-zinc-400 mb-1 font-medium">Direct Inquiries:</span>
               <a
-                href="mailto:ecell@ietlucknow.ac.in"
+                href="mailto:connect.ecell@ietlucknow.ac.in"
                 className="text-sm font-semibold text-ecell-gold hover:text-ecell-gold-light tracking-wide inline-flex items-center gap-1.5"
               >
-                <span>ecell@ietlucknow.ac.in</span>
+                <span>connect.ecell@ietlucknow.ac.in</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>

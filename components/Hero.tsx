@@ -114,22 +114,6 @@ const Hero = ({ onOpenPitchModal }: HeroProps) => {
             </a>
           )}
         </motion.div>
-
-        {/* Realistic Grounded Student Focus Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mt-1 mb-4">
-          <div className="px-3.5 py-1.5 rounded-full bg-card/70 backdrop-blur-md border border-ecell-gold/20 flex items-center gap-2 text-xs font-medium text-foreground shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-ecell-gold shadow-[0_0_8px_#C5A145]" />
-            <span>Campus Incubation</span>
-          </div>
-          <div className="px-3.5 py-1.5 rounded-full bg-card/70 backdrop-blur-md border border-ecell-gold/20 flex items-center gap-2 text-xs font-medium text-foreground shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-ecell-gold shadow-[0_0_8px_#C5A145]" />
-            <span>Peer Mentorship</span>
-          </div>
-          <div className="px-3.5 py-1.5 rounded-full bg-card/70 backdrop-blur-md border border-ecell-gold/20 flex items-center gap-2 text-xs font-medium text-foreground shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-ecell-gold shadow-[0_0_8px_#C5A145]" />
-            <span>Hackathons &amp; Sprints</span>
-          </div>
-        </div>
       </motion.div>
 
       {/* ── 3D Perspective Venture Incubation Matrix (Stitch + Aceternity UI Container Scroll) ── */}

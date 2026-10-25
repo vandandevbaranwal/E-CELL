@@ -199,20 +199,8 @@ export default function VenturePipelineCard({ onOpenPitchModal }: VenturePipelin
         </div>
 
         {/* Bottom Interactive Strip */}
-        <div className="mt-6 pt-5 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs text-muted-foreground">
-            <span className="px-2.5 py-1 rounded-full bg-muted/60 border border-border">
-              🏛️ IIC Recognized
-            </span>
-            <span className="px-2.5 py-1 rounded-full bg-muted/60 border border-border">
-              💡 Pre-Seed Incubation
-            </span>
-            <span className="px-2.5 py-1 rounded-full bg-muted/60 border border-border">
-              🚀 Demo Days & Pitch Desks
-            </span>
-          </div>
-
-          {onOpenPitchModal && (
+        {onOpenPitchModal && (
+          <div className="mt-6 pt-5 border-t border-border flex items-center justify-end">
             <button
               onClick={onOpenPitchModal}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ecell-gold/15 hover:bg-ecell-gold/25 text-ecell-gold border border-ecell-gold/30 text-xs font-bold transition-all hover:scale-[1.02] shadow-[0_0_15px_rgba(197,161,69,0.15)]"
@@ -220,8 +208,8 @@ export default function VenturePipelineCard({ onOpenPitchModal }: VenturePipelin
               <span>Submit Your Pitch Deck</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </motion.div>
     </div>
   );

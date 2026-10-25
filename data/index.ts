@@ -117,6 +117,15 @@ export const mentors = [
     bio: "Pioneered the entrepreneurial movement at IET Lucknow, dedicated to mentoring budding founders and bridging academia with startups.",
     linkedin: "https://www.linkedin.com/in/anurag-verma-phd-%F0%9F%92%A1-59a1bbbb/",
   },
+  {
+    id: 4,
+    name: "Prof. Seethalekshmi K",
+    role: "President, IIC, IET Lucknow",
+    image: "/seethalekshmi.jpg",
+    alt: "Prof. Seethalekshmi K - President, IIC, IET Lucknow",
+    bio: "Accomplished academician and innovation champion driving institutional incubation, industry-academia partnerships, and entrepreneurial initiatives across IET Lucknow.",
+    linkedin: "https://www.linkedin.com/in/seethalekshmi-k-a92b4822/",
+  },
 ];
 
 // Official E-Cell Core Team (Session 2026-27) - Appointed by Dr. Anurag Verma (Faculty Coordinator)

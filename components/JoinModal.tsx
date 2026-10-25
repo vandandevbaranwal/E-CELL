@@ -25,7 +25,9 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
     setIsSubmitting(true);
     setErrorMessage(null);
 
-    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_SCRIPT_URL;
+    const scriptUrl =
+      process.env.NEXT_PUBLIC_GOOGLE_SHEETS_SCRIPT_URL ||
+      "https://script.google.com/macros/s/AKfycbxGxupjnI-dw62GWbtjQi56UNp8_suM8ky2Fbue-1fzNCg8t0rY-HIwMRKDoTeuwoUu/exec";
 
     try {
       if (scriptUrl) {

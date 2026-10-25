@@ -192,16 +192,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Credits */}
-        <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-400 text-center md:text-left">
-          <p className="text-zinc-400">
-            © {new Date().getFullYear()} Entrepreneurship Cell, Institute of Engineering and Technology, Lucknow. All rights reserved.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-medium text-zinc-300">
-            <span className="text-[11px] text-zinc-400 font-medium">
-              Redesigned by: <span className="text-zinc-200 font-semibold">Vandan Dev EE&apos;29</span>
+        <div className="pt-6 flex flex-col items-center justify-center gap-2.5 text-xs text-zinc-400 text-center">
+          <div className="flex items-center justify-center font-medium">
+            <span className="text-xs sm:text-sm text-zinc-400 font-medium">
+              Redesigned by: <span className="text-ecell-gold font-semibold">Vandan Dev EE&apos;29</span>
             </span>
           </div>
+
+          <p className="text-[11px] text-zinc-500">
+            © {new Date().getFullYear()} Entrepreneurship Cell, Institute of Engineering and Technology, Lucknow. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

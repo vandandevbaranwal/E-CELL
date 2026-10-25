@@ -1,95 +1,132 @@
 "use client";
+
+import React from "react";
 import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { motion, useReducedMotion } from "framer-motion";
+
+const serviceItems = [
+  {
+    id: 1,
+    area: "md:col-span-6 lg:col-span-5",
+    badge: "ON CAMPUS",
+    tags: ["Free AWS & GCP Credits", "Legal Filing Help", "Patent Advisory"],
+    icon: <Box className="h-5 w-5 text-ecell-gold" />,
+    title: "Startup Incubation & Mentorship",
+    description:
+      "Providing aspiring entrepreneurs with expert guidance, mentorship from industry leaders, and incubation support to help transform ideas into scalable startups.",
+  },
+  {
+    id: 2,
+    area: "md:col-span-6 lg:col-span-7",
+    badge: "SPEAKER SERIES",
+    tags: ["Unicorn Founders", "VC Partners", "Interactive Q&A"],
+    icon: <Settings className="h-5 w-5 text-ecell-gold" />,
+    title: "Workshops & Skill Development",
+    description:
+      " Organizing sessions on business development, pitching, financial planning, digital marketing, and emerging technologies to enhance entrepreneurial skills.",
+  },
+  {
+    id: 3,
+    area: "md:col-span-6 lg:col-span-7",
+    badge: "PRIVATE ARENA",
+    tags: ["Direct Term-Sheets", "Accredited Angels", "Due Diligence Kit"],
+    icon: <Lock className="h-5 w-5 text-ecell-gold" />,
+    title: "Funding & Investment Opportunities",
+    description:
+      " Connecting student startups with angel investors, venture capitalists, and startup grants to help them secure funding and financial backing. We organize pitch sessions, investor meetups, and crowdfunding initiatives to provide financial support and guidance on securing investments. Additionally, we assist startups in applying for government schemes and incubation programs to further accelerate their growth.",
+  },
+  {
+    id: 4,
+    area: "md:col-span-6 lg:col-span-5",
+    badge: "GLOBAL NETWORK",
+    tags: ["Corporate Roundtables", "Alumni Mentors", "Accelerator Linkages"],
+    icon: <Sparkles className="h-5 w-5 text-ecell-gold" />,
+    title: "Networking & Industry Collaboration ",
+    description:
+      "Facilitating interactions with successful entrepreneurs, corporate leaders, and alumni through networking events, panel discussions, and startup meetups. We collaborate with industry partners, incubators, and accelerators to provide students with exposure to real-world business scenarios. ",
+  },
+  {
+    id: 5,
+    area: "md:col-span-12",
+    badge: "COMPETITIONS",
+    tags: ["₹5L+ Prize Matrix", "National Hackathons", "Investor Pitching"],
+    icon: <Search className="h-5 w-5 text-ecell-gold" />,
+    title: "Business Competitions & Hackathons",
+    description:
+      "Hosting events like pitch competitions, business plan challenges, and hackathons to encourage innovation and provide a platform for students to showcase their ideas. These competitions help students refine their problem-solving skills, develop market-ready solutions, and receive feedback. ",
+  },
+];
 
 const Services = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <div className="my-[150px] " id="#services" >
-      <h1 className="heading mb-[80px] ">
-        Service<span className="text-purple">s</span>
-      </h1>
-      <ul className="grid grid-cols-1 mb-[80px]  grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
-        <GridItem
-          area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-          icon={<Box className="h-4 w-4 text-black dark:text-neutral-400" />}
-          title="Startup Incubation & Mentorship"
-          description="Providing aspiring entrepreneurs with expert guidance, mentorship from industry leaders, and incubation support to help transform ideas into scalable startups."
-        />
+    <section className="w-full py-16 md:py-24 relative" id="services">
+      <div className="section-container">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-14"
+        >
+          <h2 className="heading mb-4 text-foreground">
+            Our <span className="text-ecell-gold">Services</span>
+          </h2>
+          <p className="text-sm md:text-base text-muted-foreground">
+            Empowering students with end-to-end entrepreneurial support, resources, and institutional backing.
+          </p>
+        </motion.div>
 
-        <GridItem
-          area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
-          icon={
-            <Settings className="h-4 w-4 text-black dark:text-neutral-400" />
-          }
-          title="Workshops & Skill Development"
-          description=" Organizing sessions on business development, pitching, financial planning, digital marketing, and emerging technologies to enhance entrepreneurial skills."
-        />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6">
+          {serviceItems.map((item, idx) => (
+            <motion.div
+              key={item.id}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.45,
+                delay: shouldReduceMotion ? 0 : idx * 0.08,
+                ease: "easeOut",
+              }}
+              whileHover={shouldReduceMotion ? {} : { y: -4, transition: { duration: 0.2 } }}
+              className={`rounded-2xl border border-border/80 dark:border-border/60 bg-card dark:bg-[#0D1220]/95 p-6 sm:p-7 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/50 hover:shadow-[0_12px_36px_rgba(197,161,69,0.14)] flex flex-col justify-between ${item.area}`}
+            >
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-ecell-gold/10 border border-ecell-gold/20 flex items-center justify-center transition-transform group-hover:scale-105">
+                    {item.icon}
+                  </div>
+                  <span className="text-[11px] font-bold tracking-wider px-2.5 py-1 rounded-full bg-ecell-gold/15 border border-ecell-gold/30 text-ecell-gold uppercase">
+                    {item.badge}
+                  </span>
+                </div>
+                <h3 className="font-heading text-xl font-bold text-foreground mb-3 tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground dark:text-zinc-300 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
 
-        <GridItem
-          area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
-          icon={<Lock className="h-4 w-4 text-black dark:text-neutral-400" />}
-          title="Funding & Investment Opportunities"
-          description=" Connecting student startups with angel investors, venture capitalists, and startup grants to help them secure funding and financial backing. We organize pitch sessions, investor meetups, and crowdfunding initiatives to provide financial support and guidance on securing investments. Additionally, we assist startups in applying for government schemes and incubation programs to further accelerate their growth."
-        />
-
-        <GridItem
-          area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
-          icon={
-            <Sparkles className="h-4 w-4 text-black dark:text-neutral-400" />
-          }
-          title="Networking & Industry Collaboration "
-          description="Facilitating interactions with successful entrepreneurs, corporate leaders, and alumni through networking events, panel discussions, and startup meetups. We collaborate with industry partners, incubators, and accelerators to provide students with exposure to real-world business scenarios. "
-        />
-
-        <GridItem
-          area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
-          icon={<Search className="h-4 w-4 text-black dark:text-neutral-400" />}
-          title="Business Competitions & Hackathons"
-          description="Hosting events like pitch competitions, business plan challenges, and hackathons to encourage innovation and provide a platform for students to showcase their ideas. These competitions help students refine their problem-solving skills, develop market-ready solutions, and receive feedback. "
-        />
-      </ul>
-    </div>
-  );
-};
-
-interface GridItemProps {
-  area: string;
-  icon: React.ReactNode;
-  title: string;
-  description: React.ReactNode;
-}
-
-const GridItem = ({ area, icon, title, description }: GridItemProps) => {
-  return (
-    <li className={`min-h-[14rem] list-none ${area}`}>
-      <div className="relative h-full rounded-2.5xl border  p-2  md:rounded-3xl md:p-3">
-        <GlowingEffect
-          spread={40}
-          glow={true}
-          disabled={false}
-          proximity={64}
-          inactiveZone={0.01}
-        />
-        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border-0.75 p-6  dark:shadow-[0px_0px_27px_0px_#2D2D2D] md:p-6">
-          <div className="relative flex flex-1 flex-col justify-between gap-3">
-            <div className="w-fit rounded-lg border border-gray-600 p-2 ">
-              {icon}
-            </div>
-            <div className="space-y-1">
-              <h3 className="pt-0.5 text-xl/[1.375rem] font-semibold font-sans -tracking-4 md:text-2xl/[1.875rem] text-balance text-black dark:text-white">
-                {title}
-              </h3>
-              <h2
-                className="[&_b]:md:font-semibold [&_strong]:md:font-semibold font-sans text-sm/[1.125rem] 
-              md:text-base/[1.375rem]  text-black dark:text-neutral-400"
-              >
-                {description}
-              </h2>
-            </div>
-          </div>
+              {item.tags && item.tags.length > 0 && (
+                <div className="mt-6 pt-4 border-t border-border/80 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-muted/60 border border-border text-muted-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
-    </li>
+    </section>
   );
 };
 

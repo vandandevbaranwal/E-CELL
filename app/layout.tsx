@@ -1,14 +1,59 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "./provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "E-Cell | IET LKO",
-  description: "Entrepreneurship Cell of IET Lucknow ",
+  title: "E-Cell | IET Lucknow — Entrepreneurship Cell",
+  description:
+    "Entrepreneurship Cell of Institute of Engineering and Technology, Lucknow. Fostering innovation, student-led startups, and venture creation.",
+  keywords: [
+    "E-Cell",
+    "IET Lucknow",
+    "Entrepreneurship",
+    "Startups",
+    "Incubation",
+    "Innovation",
+    "AKTU",
+  ],
+  metadataBase: new URL("https://ecell-iet.in"),
+  openGraph: {
+    title: "E-Cell | IET Lucknow",
+    description:
+      "Entrepreneurship Cell of IET Lucknow — Fostering Innovation & Startup Culture",
+    url: "https://ecell-iet.in",
+    siteName: "E-Cell IET Lucknow",
+    images: [
+      {
+        url: "/ecell-logo.png",
+        width: 800,
+        height: 600,
+        alt: "E-Cell IET Lucknow Crest",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "E-Cell | IET Lucknow",
+    description:
+      "Entrepreneurship Cell of IET Lucknow — Fostering Innovation & Startup Culture",
+    images: ["/ecell-logo.png"],
+  },
 };
 
 export default function RootLayout({
@@ -21,11 +66,13 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/ecell-logo.png" sizes="any" />
       </head>
-      <body className={inter.className}>
+      <body
+        className={`${inter.variable} ${outfit.variable} ${inter.className} font-body bg-background text-foreground antialiased selection:bg-ecell-gold/20 selection:text-ecell-gold`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

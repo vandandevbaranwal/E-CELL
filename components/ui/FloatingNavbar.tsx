@@ -7,11 +7,14 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export const FloatingNav = ({
   navItems,
   className,
+  onOpenJoinModal,
 }: {
   navItems: {
     name: string;
@@ -19,19 +22,16 @@ export const FloatingNav = ({
     icon?: JSX.Element;
   }[];
   className?: string;
+  onOpenJoinModal?: () => void;
 }) => {
   const { scrollYProgress } = useScroll();
-
-  // set true for the initial state so that nav bar is visible in the hero section
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    // Check if current is not undefined and is a number
     if (typeof current === "number") {
       let direction = current! - scrollYProgress.getPrevious()!;
 
       if (scrollYProgress.get() < 0.05) {
-        // also set true for the initial state
         setVisible(true);
       } else {
         if (direction < 0) {
@@ -58,40 +58,62 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          // change rounded-full to rounded-lg
-          // remove dark:border-white/[0.2] dark:bg-black bg-white border-transparent
-          // change  pr-2 pl-8 py-2 to px-10 py-5
-          "flex max-w-fit md:min-w-[70vw] lg:min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-4",
+          "flex max-w-fit md:min-w-[75vw] lg:min-w-fit fixed z-[5000] top-5 sm:top-8 inset-x-0 mx-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl border border-border bg-card/85 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.35)] items-center justify-between sm:justify-center space-x-2 sm:space-x-4",
           className
         )}
-        style={{
-          backdropFilter: "blur(16px) saturate(180%)",
-          backgroundColor: "rgba(17, 25, 40, 0.75)",
-          borderRadius: "12px",
-          border: "1px solid rgba(255, 255, 255, 0.125)",
-        }}
       >
-        <img src="ecell-logo.png" className=" h-[50x] w-[50px] m-0 " />
-        {navItems.map((navItem: any, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={`/${navItem.link}`}
-            className={cn(
-              "relative dark:text-neutral-50 items-center  flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
-            )}
-          >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            {/* add !cursor-pointer */}
-            {/* remove hidden sm:block for the mobile responsive */}
-            <span className=" text-sm !cursor-pointer">{navItem.name}</span>
-          </Link>
-        ))}
-        {/* remove this login btn */}
-        {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </button> */}
+        {/* Logo Left */}
+        <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
+          <Image
+            src="/ecell-logo.png"
+            alt="E-Cell IET Lucknow Logo"
+            width={34}
+            height={34}
+            className="h-8 w-8 object-contain transition-transform group-hover:scale-105"
+          />
+          <span className="hidden lg:inline-block font-heading font-bold text-sm tracking-tight text-foreground">
+            E-Cell <span className="text-ecell-gold">IET LKO</span>
+          </span>
+        </Link>
+
+        {/* Links Center */}
+        <div className="flex items-center space-x-0.5 sm:space-x-2">
+          {navItems.map((navItem: any, idx: number) => (
+            <Link
+              key={`link=${idx}`}
+              href={`/${navItem.link}`}
+              className={cn(
+                "relative items-center flex text-muted-foreground hover:text-ecell-gold transition-colors no-underline px-2 sm:px-2.5 py-1 text-xs sm:text-sm font-medium rounded-lg hover:bg-card/60"
+              )}
+            >
+              <span className="block sm:hidden text-xs">{navItem.name}</span>
+              <span className="hidden sm:inline-block cursor-pointer">{navItem.name}</span>
+            </Link>
+          ))}
+        </div>
+
+        {/* Right Controls: Theme Toggle + Join E-Cell CTA */}
+        <div className="flex items-center space-x-2 pl-2 sm:pl-3 border-l border-border">
+          <ThemeToggle />
+          {onOpenJoinModal ? (
+            <button
+              onClick={onOpenJoinModal}
+              className="hidden sm:inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-3.5 py-1.5 text-xs font-bold text-black shadow-sm transition hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer"
+            >
+              Join E-Cell
+            </button>
+          ) : (
+            <a
+              href="#contact"
+              className="hidden sm:inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-3.5 py-1.5 text-xs font-bold text-black shadow-sm transition hover:brightness-110 active:scale-95 whitespace-nowrap"
+            >
+              Join E-Cell
+            </a>
+          )}
+        </div>
       </motion.div>
     </AnimatePresence>
   );
 };
+
+export default FloatingNav;

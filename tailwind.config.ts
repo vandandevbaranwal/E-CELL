@@ -26,23 +26,41 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ["var(--font-heading)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+      },
       colors: {
-        shivansh:"rgba(0,3,25,1)",
+        /* ── E-Cell Brand ── */
+        ecell: {
+          gold: "hsl(var(--ecell-gold) / <alpha-value>)",
+          "gold-light": "hsl(var(--ecell-gold-light) / <alpha-value>)",
+          "gold-dark": "hsl(var(--ecell-gold-dark) / <alpha-value>)",
+          "gold-muted": "hsl(var(--ecell-gold-muted) / <alpha-value>)",
+          surface: "hsl(var(--surface-primary) / <alpha-value>)",
+          "surface-elevated": "hsl(var(--surface-elevated) / <alpha-value>)",
+        },
+
+        /* ── Legacy tokens (kept for existing component compat) ── */
+        shivansh: "hsl(var(--background))",
         black: {
           DEFAULT: "#000",
-          100: "#000319",
-          200: "rgba(17, 25, 40, 0.75)",
-          300: "rgba(255, 255, 255, 0.125)",
+          100: "hsl(var(--background))",
+          200: "hsl(var(--surface-elevated) / 0.75)",
+          300: "hsl(var(--border))",
         },
         white: {
           DEFAULT: "#FFF",
-          100: "#BEC1DD",
-          200: "#C1C2D3",
+          100: "hsl(var(--muted-foreground))",
+          200: "hsl(var(--muted-foreground))",
         },
         blue: {
           "100": "#E4ECFF",
         },
-        purple: "#CBACF9",
+        purple: "hsl(var(--ecell-gold))",
+
+        /* ── Shadcn/UI Tokens ── */
+        surface: "hsl(var(--surface-primary) / <alpha-value>)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -81,6 +99,16 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      spacing: {
+        "4.5": "1.125rem",
+        "3.5": "0.875rem",
+      },
+      minHeight: {
+        "50": "12.5rem",
+      },
+      zIndex: {
+        "1": "1",
       },
       keyframes: {
         "accordion-down": {
@@ -147,6 +175,24 @@ const config = {
             transform: "translate(calc(-50% - 0.5rem))",
           },
         },
+        "fade-in-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "gold-pulse": {
+          "0%, 100%": {
+            opacity: "0.4",
+          },
+          "50%": {
+            opacity: "0.15",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -160,6 +206,8 @@ const config = {
         fifth: "moveInCircle 20s ease infinite",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "gold-pulse": "gold-pulse 4s ease-in-out infinite",
       },
     },
   },

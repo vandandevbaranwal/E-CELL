@@ -1,173 +1,102 @@
-import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+"use client";
 
-import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Target, Rocket, Globe2 } from "lucide-react";
+
+const goals = [
+  {
+    step: "01",
+    tag: "Entrepreneurial Mindset",
+    title: "Promoting Entrepreneurial Mindset",
+    icon: <Target className="h-6 w-6 text-ecell-gold" />,
+    description:
+      "An E-Cell fosters an entrepreneurial mindset by encouraging creativity, risk-taking, and problem-solving among students. It organizes workshops, guest lectures, and interactive sessions with industry experts to provide insights into business development. Through case study discussions, brainstorming sessions, and leadership activities, students are exposed to real-world challenges, helping them develop the confidence and skills needed to innovate and take initiative in entrepreneurial ventures.",
+  },
+  {
+    step: "02",
+    tag: "Startup Support",
+    title: "Providing Startup Support",
+    icon: <Rocket className="h-6 w-6 text-ecell-gold" />,
+    description:
+      " E-Cells act as a launchpad for student startups by offering mentorship, funding assistance, and access to incubation facilities. They connect students with industry professionals and investors, helping them refine their ideas, develop prototypes, and secure financial backing. Additionally, legal and financial guidance is provided to help students navigate company registration, intellectual property rights, and business compliance, ensuring their startups have a strong foundation for growth",
+  },
+  {
+    step: "03",
+    tag: "Entrepreneurial Ecosystem",
+    title: "Building a Strong Entrepreneurial Ecosystem",
+    icon: <Globe2 className="h-6 w-6 text-ecell-gold" />,
+    description:
+      " To create a thriving startup culture, E-Cells establish collaborations with industries, investors, and successful alumni to provide networking and funding opportunities. They organize pitch competitions, hackathons, and business plan challenges, giving students a platform to showcase and refine their ideas. By facilitating startup internships and corporate partnerships, E-Cells help students gain real-world exposure, ensuring a well-connected ecosystem that supports entrepreneurial ambitions.",
+  },
+];
 
 const Approach = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section className="w-full py-20">
-      <h1 className="heading">
-        Our <span className="text-purple">Goals</span>
-      </h1>
-     
-      <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-        
-        <Card
-          title="Promoting Entrepreneurial Mindset"
-          icon={<AceternityIcon order=" Entrepreneurial Mindset" />}
-          des="An E-Cell fosters an entrepreneurial mindset by encouraging creativity, risk-taking, and problem-solving among students. It organizes workshops, guest lectures, and interactive sessions with industry experts to provide insights into business development. Through case study discussions, brainstorming sessions, and leadership activities, students are exposed to real-world challenges, helping them develop the confidence and skills needed to innovate and take initiative in entrepreneurial ventures."
+    <section className="w-full py-16 md:py-24 relative" id="goals">
+      <div className="section-container">
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-14"
         >
-          <CanvasRevealEffect
-            animationSpeed={5.1}
-           
-            containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
-          />
-        </Card>
-        <Card
-          title="Providing Startup Support"
-          icon={<AceternityIcon order="Startup Support" />}
-          des=" E-Cells act as a launchpad for student startups by offering mentorship, funding assistance, and access to incubation facilities. They connect students with industry professionals and investors, helping them refine their ideas, develop prototypes, and secure financial backing. Additionally, legal and financial guidance is provided to help students navigate company registration, intellectual property rights, and business compliance, ensuring their startups have a strong foundation for growth"
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            
-            containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
-            colors={[
-              
-              [255, 166, 158],
-              [221, 255, 247],
-            ]}
-            dotSize={2}
-          />
-        
-         
-        </Card>
-        <Card
-          title="Building a Strong Entrepreneurial Ecosystem"
-          icon={<AceternityIcon order="Entrepreneurial Ecosystem" />}
-          des=" To create a thriving startup culture, E-Cells establish collaborations with industries, investors, and successful alumni to provide networking and funding opportunities. They organize pitch competitions, hackathons, and business plan challenges, giving students a platform to showcase and refine their ideas. By facilitating startup internships and corporate partnerships, E-Cells help students gain real-world exposure, ensuring a well-connected ecosystem that supports entrepreneurial ambitions."
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
-            colors={[[125, 211, 252]]}
-          />
-        </Card>
+          <h2 className="heading mb-4 text-foreground">
+            Our <span className="text-ecell-gold">Goals</span>
+          </h2>
+          <p className="text-sm md:text-base text-muted-foreground">
+            Strategic pillars shaping the future of collegiate entrepreneurship and startup leadership.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {goals.map((goal, idx) => (
+            <motion.div
+              key={goal.step}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : idx * 0.12,
+                ease: "easeOut",
+              }}
+              whileHover={shouldReduceMotion ? {} : { y: -6, transition: { duration: 0.2 } }}
+              className="relative rounded-2xl border border-border bg-card p-7 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/40 hover:shadow-[0_12px_36px_rgba(197,161,69,0.12)] flex flex-col justify-between"
+            >
+              <div>
+                {/* Header: Step number + Tag */}
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-heading text-3xl font-extrabold text-ecell-gold/40">
+                    {goal.step}
+                  </span>
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-ecell-gold/10 border border-ecell-gold/20 text-ecell-gold">
+                    {goal.tag}
+                  </span>
+                </div>
+
+                {/* Icon & Title */}
+                <div className="w-12 h-12 rounded-xl bg-card border border-border flex items-center justify-center mb-5 shadow-sm">
+                  {goal.icon}
+                </div>
+                <h3 className="font-heading text-xl font-bold text-foreground mb-3.5 tracking-tight">
+                  {goal.title}
+                </h3>
+
+                {/* Description verbatim */}
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {goal.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
 export default Approach;
-
-const Card = ({
-  title,
-  icon,
-  children,
-  // add this one for the desc
-  des,
-}: {
-  title: string;
-  icon: React.ReactNode;
-  children?: React.ReactNode;
-  des: string;
-}) => {
-  const [hovered, setHovered] = React.useState(false);
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      
-      className="border border-black/[0.2] group/canvas-card flex items-center justify-center
-       dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] rounded-3xl "
-      style={{
-        
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-      }}
-    >
-      
-      <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
-
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="h-full w-full absolute inset-0"
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="relative z-20 px-10">
-        <div
-         
-          className="text-center group-hover/canvas-card:-translate-y-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] 
-        group-hover/canvas-card:opacity-0 transition duration-200 min-w-40 mx-auto flex items-center justify-center"
-        >
-          {icon}
-        </div>
-        <h2
-     
-          className="dark:text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100
-         relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white 
-         group-hover/canvas-card:-translate-y-2 transition duration-200"
-        >
-          {title}
-        </h2>
-       
-        <p
-          className="text-sm opacity-0 group-hover/canvas-card:opacity-100
-         relative z-10 mt-4 group-hover/canvas-card:text-white text-center
-         group-hover/canvas-card:-translate-y-2 transition duration-200"
-          style={{ color: "#E4ECFF" }}
-        >
-          {des}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-const AceternityIcon = ({ order }: { order: string }) => {
-  return (
-    <div>
-      
-      <button className="relative inline-flex overflow-hidden rounded-full p-[1px] ">
-        <span
-          className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
-         bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
-        />
-        <span
-          className="inline-flex h-full w-full cursor-pointer items-center 
-        justify-center rounded-full bg-slate-950 px-5 py-2 text-purple backdrop-blur-3xl font-bold text-2xl"
-        >
-          {order}
-        </span>
-      </button>
-    </div>
-    
-  );
-};
-
-export const Icon = ({ className, ...rest }: any) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className={className}
-      {...rest}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-    </svg>
-  );
-};

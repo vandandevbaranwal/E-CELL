@@ -35,5 +35,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Netlify
+.netlify
+
+# Temporary and scratch files
+/scratch/
+/.tempmediaStorage/
+
 # Sentry Config File
 .sentryclirc

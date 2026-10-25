@@ -179,6 +179,21 @@ export default function TopNavbar() {
                 </MotionNavigationMenuLink>
               </MotionNavigationMenuItem>
 
+              {/* Achievements Link */}
+              <MotionNavigationMenuItem>
+                <MotionNavigationMenuLink
+                  href="/#achievements"
+                  className="px-3.5 py-2 text-sm font-medium text-foreground/85 hover:text-ecell-gold focus:text-ecell-gold transition-colors rounded-full"
+                >
+                  <RandomLetterSwap
+                    label="Achievements"
+                    staggerDuration={0.015}
+                    transition={{ duration: 0.45, type: "spring" }}
+                    className="inline-block"
+                  />
+                </MotionNavigationMenuLink>
+              </MotionNavigationMenuItem>
+
               {/* 4. Incubation Link */}
               <MotionNavigationMenuItem>
                 <MotionNavigationMenuLink
@@ -260,6 +275,7 @@ export default function TopNavbar() {
               { name: "About", href: "/#about" },
               { name: "Initiatives", href: "/#services" },
               { name: "Events", href: "/events" },
+              { name: "Achievements", href: "/#achievements" },
               { name: "Incubation", href: "/#services" },
               { name: "Team", href: "/team" },
               { name: "Blogs", href: "/#recentprojects" },

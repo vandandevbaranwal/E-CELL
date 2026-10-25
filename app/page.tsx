@@ -11,6 +11,7 @@ import Jordon from "@/components/Jordon";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import EventsSection from "@/components/EventsSection";
+import AchievementsSection from "@/components/AchievementsSection";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CursorGlow from "@/components/ui/CursorGlow";
 import ScrollToTop from "@/components/ui/ScrollToTop";
@@ -46,6 +47,7 @@ const Home = () => {
 
       {/* Main Body Content Sections (Continued) */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AchievementsSection />
         <Jordon />
         <Blogssec />
         <Approach />

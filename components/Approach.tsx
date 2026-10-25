@@ -7,27 +7,27 @@ import { Target, Rocket, Globe2 } from "lucide-react";
 const goals = [
   {
     step: "01",
-    tag: "Entrepreneurial Mindset",
-    title: "Promoting Entrepreneurial Mindset",
+    tag: "Mindset & Innovation",
+    title: "Inspiring Practical Innovation",
     icon: <Target className="h-6 w-6 text-ecell-gold" />,
     description:
-      "An E-Cell fosters an entrepreneurial mindset by encouraging creativity, risk-taking, and problem-solving among students. It organizes workshops, guest lectures, and interactive sessions with industry experts to provide insights into business development. Through case study discussions, brainstorming sessions, and leadership activities, students are exposed to real-world challenges, helping them develop the confidence and skills needed to innovate and take initiative in entrepreneurial ventures.",
+      "We run hands-on workshops, brainstorming nights, and problem-solving sprints where students build confidence to take initiative. Instead of passive lectures, we bring in practitioners and alumni founders to walk through real startup challenges and product decisions.",
   },
   {
     step: "02",
-    tag: "Startup Support",
-    title: "Providing Startup Support",
+    tag: "Student Projects",
+    title: "Supporting Student Builders",
     icon: <Rocket className="h-6 w-6 text-ecell-gold" />,
     description:
-      " E-Cells act as a launchpad for student startups by offering mentorship, funding assistance, and access to incubation facilities. They connect students with industry professionals and investors, helping them refine their ideas, develop prototypes, and secure financial backing. Additionally, legal and financial guidance is provided to help students navigate company registration, intellectual property rights, and business compliance, ensuring their startups have a strong foundation for growth",
+      "We help campus innovators take their projects beyond the classroom. From setting up initial prototypes and accessing campus lab space to peer reviews and pitch practice, our team works closely with student builders throughout their development journey.",
   },
   {
     step: "03",
-    tag: "Entrepreneurial Ecosystem",
-    title: "Building a Strong Entrepreneurial Ecosystem",
+    tag: "Campus Community",
+    title: "Connecting Our Campus",
     icon: <Globe2 className="h-6 w-6 text-ecell-gold" />,
     description:
-      " To create a thriving startup culture, E-Cells establish collaborations with industries, investors, and successful alumni to provide networking and funding opportunities. They organize pitch competitions, hackathons, and business plan challenges, giving students a platform to showcase and refine their ideas. By facilitating startup internships and corporate partnerships, E-Cells help students gain real-world exposure, ensuring a well-connected ecosystem that supports entrepreneurial ambitions.",
+      "We connect students directly with active founders, alumni mentors, and startup teams across the region. Through campus hackathons, open pitch days, and meetups, we create an accessible space where any curious student can find collaborators and start building.",
   },
 ];
 

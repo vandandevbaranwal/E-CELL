@@ -9,12 +9,10 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import ThemeToggle from "@/components/ThemeToggle";
 
 export const FloatingNav = ({
   navItems,
   className,
-  onOpenJoinModal,
 }: {
   navItems: {
     name: string;
@@ -22,7 +20,6 @@ export const FloatingNav = ({
     icon?: JSX.Element;
   }[];
   className?: string;
-  onOpenJoinModal?: () => void;
 }) => {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
@@ -90,26 +87,6 @@ export const FloatingNav = ({
               <span className="hidden sm:inline-block cursor-pointer">{navItem.name}</span>
             </Link>
           ))}
-        </div>
-
-        {/* Right Controls: Theme Toggle + Join E-Cell CTA */}
-        <div className="flex items-center space-x-2 pl-2 sm:pl-3 border-l border-border">
-          <ThemeToggle />
-          {onOpenJoinModal ? (
-            <button
-              onClick={onOpenJoinModal}
-              className="hidden sm:inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-3.5 py-1.5 text-xs font-bold text-black shadow-sm transition hover:brightness-110 active:scale-95 whitespace-nowrap cursor-pointer"
-            >
-              Join E-Cell
-            </button>
-          ) : (
-            <a
-              href="#contact"
-              className="hidden sm:inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-3.5 py-1.5 text-xs font-bold text-black shadow-sm transition hover:brightness-110 active:scale-95 whitespace-nowrap"
-            >
-              Join E-Cell
-            </a>
-          )}
         </div>
       </motion.div>
     </AnimatePresence>

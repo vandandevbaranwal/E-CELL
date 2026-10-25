@@ -1,18 +1,16 @@
 "use client";
 
-import React, { useRef } from "react";
-import { FaRocket, FaCalendarDays, FaLightbulb } from "react-icons/fa6";
-import { Sparkles, Trophy, Rocket, ShieldCheck } from "lucide-react";
+import { useRef } from "react";
+import { FaCalendarDays, FaLightbulb } from "react-icons/fa6";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import StatsStrip from "./StatsStrip";
 import VenturePipelineCard from "./VenturePipelineCard";
 
 interface HeroProps {
-  onOpenJoinModal?: () => void;
   onOpenPitchModal?: () => void;
 }
 
-const Hero = ({ onOpenJoinModal, onOpenPitchModal }: HeroProps) => {
+const Hero = ({ onOpenPitchModal }: HeroProps) => {
   const shouldReduceMotion = useReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -24,12 +22,6 @@ const Hero = ({ onOpenJoinModal, onOpenPitchModal }: HeroProps) => {
   // Scroll parallax transforms
   const heroY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 80]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0.2]);
-
-  // Floating badges scroll parallax
-  const floatLeftTopY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -50]);
-  const floatRightTopY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, -35]);
-  const floatLeftBottomY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 50]);
-  const floatRightBottomY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 40]);
 
   return (
     <div
@@ -58,77 +50,6 @@ const Hero = ({ onOpenJoinModal, onOpenPitchModal }: HeroProps) => {
         <div className="absolute inset-0 bg-[radial-gradient(#C5A145_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.06] dark:opacity-[0.12]" />
       </div>
 
-      {/* ── Floating Achievement Badges (Desktop & Tablet) ── */}
-      <div className="w-full max-w-6xl mx-auto px-4 relative pointer-events-none">
-        {/* Floating Badge 1 (Top Left) */}
-        <motion.div
-          style={{ y: floatLeftTopY }}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden lg:flex items-center gap-2.5 absolute -top-8 left-4 px-3.5 py-2 rounded-xl bg-card/85 backdrop-blur-xl border border-ecell-gold/30 shadow-[0_8px_24px_rgba(197,161,69,0.12)] z-20 pointer-events-auto"
-        >
-          <div className="w-7 h-7 rounded-lg bg-ecell-gold/15 flex items-center justify-center text-ecell-gold">
-            <Rocket className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="text-[11px] font-bold text-foreground">₹25L+ Funding Pool</div>
-            <div className="text-[10px] text-muted-foreground">Pre-Seed Grants</div>
-          </div>
-        </motion.div>
-
-        {/* Floating Badge 2 (Top Right) */}
-        <motion.div
-          style={{ y: floatRightTopY }}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="hidden lg:flex items-center gap-2.5 absolute -top-4 right-4 px-3.5 py-2 rounded-xl bg-card/85 backdrop-blur-xl border border-ecell-gold/30 shadow-[0_8px_24px_rgba(197,161,69,0.12)] z-20 pointer-events-auto"
-        >
-          <div className="w-7 h-7 rounded-lg bg-ecell-gold/15 flex items-center justify-center text-ecell-gold">
-            <Sparkles className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="text-[11px] font-bold text-foreground">20+ Startups Mentored</div>
-            <div className="text-[10px] text-muted-foreground">Alumni & VC Network</div>
-          </div>
-        </motion.div>
-
-        {/* Floating Badge 3 (Bottom Left) */}
-        <motion.div
-          style={{ y: floatLeftBottomY }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="hidden md:flex items-center gap-2.5 absolute top-64 -left-2 px-3.5 py-2 rounded-xl bg-card/85 backdrop-blur-xl border border-border shadow-[0_8px_24px_rgba(0,0,0,0.08)] z-20 pointer-events-auto"
-        >
-          <div className="w-7 h-7 rounded-lg bg-muted flex items-center justify-center text-ecell-gold">
-            <ShieldCheck className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="text-[11px] font-bold text-foreground">IIC Recognized</div>
-            <div className="text-[10px] text-muted-foreground">Campus Incubation</div>
-          </div>
-        </motion.div>
-
-        {/* Floating Badge 4 (Bottom Right) */}
-        <motion.div
-          style={{ y: floatRightBottomY }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="hidden md:flex items-center gap-2.5 absolute top-60 -right-2 px-3.5 py-2 rounded-xl bg-card/85 backdrop-blur-xl border border-border shadow-[0_8px_24px_rgba(0,0,0,0.08)] z-20 pointer-events-auto"
-        >
-          <div className="w-7 h-7 rounded-lg bg-muted flex items-center justify-center text-ecell-gold">
-            <Trophy className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="text-[11px] font-bold text-foreground">E-Summit &apos;25</div>
-            <div className="text-[10px] text-muted-foreground">Annual Flagship</div>
-          </div>
-        </motion.div>
-      </div>
-
       {/* ── Main Hero Content with Scroll Parallax ── */}
       <motion.div
         style={{ y: heroY, opacity: heroOpacity }}
@@ -145,14 +66,14 @@ const Hero = ({ onOpenJoinModal, onOpenPitchModal }: HeroProps) => {
           Entrepreneurship Cell • IET Lucknow
         </motion.div>
 
-        {/* Primary Headline (Preserved word-for-word) */}
+        {/* Primary Headline with correct grammar */}
         <motion.h1
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl text-foreground mb-6"
         >
-          Transforming World with{" "}
+          Transforming the World with{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-ecell-gold via-ecell-gold-light to-ecell-gold-dark">
             Entrepreneurship
           </span>
@@ -166,38 +87,19 @@ const Hero = ({ onOpenJoinModal, onOpenPitchModal }: HeroProps) => {
           className="flex flex-wrap items-center justify-center gap-4 w-full max-w-lg mt-4 mb-4 px-2"
         >
           {/* Primary CTA */}
-          {onOpenJoinModal ? (
-            <button
-              onClick={onOpenJoinModal}
-              className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-7 py-3 text-sm font-bold text-black shadow-[0_4px_20px_rgba(197,161,69,0.35)] transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            >
-              <FaRocket className="mr-2.5 text-black h-4 w-4" />
-              Join E-Cell
-            </button>
-          ) : (
-            <a
-              href="#contact"
-              className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-7 py-3 text-sm font-bold text-black shadow-[0_4px_20px_rgba(197,161,69,0.35)] transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <FaRocket className="mr-2.5 text-black h-4 w-4" />
-              Join E-Cell
-            </a>
-          )}
-
-          {/* Outline CTA */}
           <a
             href="#events"
-            className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-ecell-gold/40 bg-card/60 backdrop-blur-xl px-6 py-3 text-sm font-semibold text-foreground transition-all duration-200 hover:border-ecell-gold hover:bg-ecell-gold/10 hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light px-7 py-3 text-sm font-bold text-black shadow-[0_4px_20px_rgba(197,161,69,0.35)] transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]"
           >
-            <FaCalendarDays className="mr-2 text-ecell-gold h-4 w-4" />
+            <FaCalendarDays className="mr-2 text-black h-4 w-4" />
             Upcoming Events
           </a>
 
-          {/* Subtle CTA */}
+          {/* Outline CTA */}
           {onOpenPitchModal ? (
             <button
               onClick={onOpenPitchModal}
-              className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-border bg-card/40 backdrop-blur-xl px-6 py-3 text-sm font-semibold text-muted-foreground transition-all duration-200 hover:text-foreground hover:border-border/80 hover:bg-card/70 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-ecell-gold/40 bg-card/60 backdrop-blur-xl px-6 py-3 text-sm font-semibold text-foreground transition-all duration-200 hover:border-ecell-gold hover:bg-ecell-gold/10 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <FaLightbulb className="mr-2 text-amber-400 h-4 w-4" />
               Pitch Your Idea
@@ -205,7 +107,7 @@ const Hero = ({ onOpenJoinModal, onOpenPitchModal }: HeroProps) => {
           ) : (
             <a
               href="#contact"
-              className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-border bg-card/40 backdrop-blur-xl px-6 py-3 text-sm font-semibold text-muted-foreground transition-all duration-200 hover:text-foreground hover:border-border/80 hover:bg-card/70 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex h-12 w-full sm:w-auto items-center justify-center rounded-xl border border-ecell-gold/40 bg-card/60 backdrop-blur-xl px-6 py-3 text-sm font-semibold text-foreground transition-all duration-200 hover:border-ecell-gold hover:bg-ecell-gold/10 hover:scale-[1.02] active:scale-[0.98]"
             >
               <FaLightbulb className="mr-2 text-amber-400 h-4 w-4" />
               Pitch Your Idea
@@ -213,19 +115,19 @@ const Hero = ({ onOpenJoinModal, onOpenPitchModal }: HeroProps) => {
           )}
         </motion.div>
 
-        {/* Floating Micro-Pills */}
+        {/* Realistic Grounded Student Focus Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mt-1 mb-4">
           <div className="px-3.5 py-1.5 rounded-full bg-card/70 backdrop-blur-md border border-ecell-gold/20 flex items-center gap-2 text-xs font-medium text-foreground shadow-sm">
             <span className="w-2 h-2 rounded-full bg-ecell-gold shadow-[0_0_8px_#C5A145]" />
-            <span>Incubation Support</span>
+            <span>Campus Incubation</span>
           </div>
           <div className="px-3.5 py-1.5 rounded-full bg-card/70 backdrop-blur-md border border-ecell-gold/20 flex items-center gap-2 text-xs font-medium text-foreground shadow-sm">
             <span className="w-2 h-2 rounded-full bg-ecell-gold shadow-[0_0_8px_#C5A145]" />
-            <span>₹25L+ Seed Pool</span>
+            <span>Peer Mentorship</span>
           </div>
           <div className="px-3.5 py-1.5 rounded-full bg-card/70 backdrop-blur-md border border-ecell-gold/20 flex items-center gap-2 text-xs font-medium text-foreground shadow-sm">
             <span className="w-2 h-2 rounded-full bg-ecell-gold shadow-[0_0_8px_#C5A145]" />
-            <span>100+ Angel Network</span>
+            <span>Hackathons &amp; Sprints</span>
           </div>
         </div>
       </motion.div>

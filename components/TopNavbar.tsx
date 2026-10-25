@@ -19,7 +19,6 @@ import {
   Briefcase,
   ShieldCheck,
 } from "lucide-react";
-import ThemeToggle from "@/components/ThemeToggle";
 import {
   MotionNavigationMenu,
   MotionNavigationMenuList,
@@ -29,10 +28,6 @@ import {
   MotionNavigationMenuLink,
 } from "@/components/ui/motion-navigation-menu";
 import { RandomLetterSwap } from "@/components/ui/random-letter-swap";
-
-interface TopNavbarProps {
-  onOpenJoinModal?: () => void;
-}
 
 const INITIATIVES = [
   {
@@ -61,57 +56,7 @@ const INITIATIVES = [
   },
 ];
 
-const ESUMMIT_EVENTS = [
-  {
-    title: "Pitch Deck Gala",
-    desc: "Flagship live pitch in front of prominent venture capitalists.",
-    icon: Award,
-    href: "/#events",
-  },
-  {
-    title: "Hack-a-Preneur 2025",
-    desc: "36-hour sprint building real MVP solutions for Indian startups.",
-    icon: Sparkles,
-    href: "/#events",
-  },
-  {
-    title: "Keynote Conclave",
-    desc: "Inspiring talks from unicorn founders and visionary leaders.",
-    icon: Compass,
-    href: "/#events",
-  },
-  {
-    title: "Startup Expo",
-    desc: "Interactive demo day connecting founders with 5,000+ attendees.",
-    icon: Briefcase,
-    href: "/#events",
-  },
-];
-
-const STARTUP_ITEMS = [
-  {
-    title: "Incubated Ventures",
-    desc: "Explore 20+ active companies born and nurtured inside IET Lucknow.",
-    href: "/#startups",
-  },
-  {
-    title: "Venture Pipeline",
-    desc: "From ideation to seed funding — our structured incubation stages.",
-    href: "/#startups",
-  },
-  {
-    title: "Investor Connect",
-    desc: "Direct syndicate introductions to angel networks and marquee VCs.",
-    href: "/#startups",
-  },
-  {
-    title: "Legal & IP Advisory",
-    desc: "Patent support, incorporation, and regulatory compliance assistance.",
-    href: "/#about",
-  },
-];
-
-export default function TopNavbar({ onOpenJoinModal }: TopNavbarProps) {
+export default function TopNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const highlightPillClass =
@@ -139,9 +84,6 @@ export default function TopNavbar({ onOpenJoinModal }: TopNavbarProps) {
           <div className="flex flex-col">
             <span className="font-heading font-extrabold text-base sm:text-lg text-ecell-gold tracking-wide leading-tight group-hover:text-ecell-gold-light transition-colors">
               E-Cell IET Lucknow
-            </span>
-            <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none mt-0.5">
-              EST. 2014 • IET LUCKNOW
             </span>
           </div>
         </Link>
@@ -221,114 +163,34 @@ export default function TopNavbar({ onOpenJoinModal }: TopNavbarProps) {
                 </MotionNavigationMenuContent>
               </MotionNavigationMenuItem>
 
-              {/* 3. E-Summit Mega-Menu Dropdown (Flagship) */}
-              <MotionNavigationMenuItem value="esummit">
-                <MotionNavigationMenuTrigger className="px-3.5 py-2 text-sm font-semibold text-ecell-gold hover:text-ecell-gold-light focus:text-ecell-gold-light transition-colors rounded-full">
-                  <span className="flex items-center gap-1.5">
-                    <RandomLetterSwap
-                      label="E-Summit"
-                      staggerDuration={0.02}
-                      transition={{ duration: 0.45, type: "spring" }}
-                      className="inline-block"
-                    />
-                    <span className="text-[9px] uppercase font-extrabold tracking-wider px-1.5 py-0.5 rounded-full bg-ecell-gold/20 text-ecell-gold border border-ecell-gold/40">
-                      Flagship
-                    </span>
-                  </span>
-                </MotionNavigationMenuTrigger>
-                <MotionNavigationMenuContent
-                  highlightClassName={dropdownHighlightClass}
+              {/* 3. Events Link */}
+              <MotionNavigationMenuItem>
+                <MotionNavigationMenuLink
+                  href="/#events"
+                  className="px-3.5 py-2 text-sm font-medium text-foreground/85 hover:text-ecell-gold focus:text-ecell-gold transition-colors rounded-full"
                 >
-                  <div className="grid w-[520px] grid-cols-[1fr_1.3fr] gap-2 p-2">
-                    {/* Featured Event Card */}
-                    <MotionNavigationMenuLink
-                      href="/#events"
-                      className="bg-gradient-to-br from-ecell-gold/20 via-background to-background/90 border border-ecell-gold/30 rounded-xl p-4 flex flex-col justify-between"
-                    >
-                      <div>
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-ecell-gold/25 text-ecell-gold text-[10px] font-bold uppercase tracking-wider mb-3">
-                          <Sparkles className="w-3 h-3" /> Annual Conclave
-                        </span>
-                        <h4 className="font-heading font-extrabold text-base text-foreground mb-1">
-                          E-Summit &apos;25
-                        </h4>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                          Uttar Pradesh&apos;s premier collegiate entrepreneurial
-                          festival bringing founders, angel syndicates, and
-                          students under one roof.
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-1 text-xs font-bold text-ecell-gold pt-3">
-                        <span>Explore Fest Schedule</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </MotionNavigationMenuLink>
-
-                    {/* Events List */}
-                    <div className="space-y-1">
-                      {ESUMMIT_EVENTS.map((event) => (
-                        <MotionNavigationMenuLink
-                          key={event.title}
-                          href={event.href}
-                          className="flex items-start gap-2.5 p-2.5 rounded-xl hover:bg-ecell-gold/10 transition-colors"
-                        >
-                          <span className="p-1.5 rounded-lg bg-ecell-gold/15 text-ecell-gold border border-ecell-gold/30 shrink-0 mt-0.5">
-                            <event.icon className="w-3.5 h-3.5" />
-                          </span>
-                          <div>
-                            <div className="flex items-center gap-1 text-xs font-semibold text-foreground">
-                              <span>{event.title}</span>
-                              <ArrowUpRight className="w-3 h-3 text-ecell-gold opacity-75" />
-                            </div>
-                            <span className="text-[11px] text-muted-foreground line-clamp-1">
-                              {event.desc}
-                            </span>
-                          </div>
-                        </MotionNavigationMenuLink>
-                      ))}
-                    </div>
-                  </div>
-                </MotionNavigationMenuContent>
-              </MotionNavigationMenuItem>
-
-              {/* 4. Startups Mega-Menu Dropdown */}
-              <MotionNavigationMenuItem value="startups">
-                <MotionNavigationMenuTrigger className="px-3.5 py-2 text-sm font-medium text-foreground/85 hover:text-ecell-gold focus:text-ecell-gold transition-colors rounded-full">
                   <RandomLetterSwap
-                    label="Startups"
+                    label="Events"
                     staggerDuration={0.02}
                     transition={{ duration: 0.45, type: "spring" }}
                     className="inline-block"
                   />
-                </MotionNavigationMenuTrigger>
-                <MotionNavigationMenuContent
-                  highlightClassName={dropdownHighlightClass}
+                </MotionNavigationMenuLink>
+              </MotionNavigationMenuItem>
+
+              {/* 4. Incubation Link */}
+              <MotionNavigationMenuItem>
+                <MotionNavigationMenuLink
+                  href="/#services"
+                  className="px-3.5 py-2 text-sm font-medium text-foreground/85 hover:text-ecell-gold focus:text-ecell-gold transition-colors rounded-full"
                 >
-                  <div className="w-[420px] p-2 space-y-1">
-                    <div className="px-3 py-2 border-b border-border/50">
-                      <span className="text-xs font-bold text-ecell-gold uppercase tracking-wider">
-                        Venture Incubation Portfolio
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-1.5 pt-1">
-                      {STARTUP_ITEMS.map((item) => (
-                        <MotionNavigationMenuLink
-                          key={item.title}
-                          href={item.href}
-                          className="p-2.5 rounded-xl hover:bg-ecell-gold/10 transition-colors flex flex-col gap-1"
-                        >
-                          <div className="flex items-center justify-between text-xs font-semibold text-foreground">
-                            <span>{item.title}</span>
-                            <ArrowUpRight className="w-3 h-3 text-ecell-gold/80" />
-                          </div>
-                          <span className="text-[11px] text-muted-foreground line-clamp-2">
-                            {item.desc}
-                          </span>
-                        </MotionNavigationMenuLink>
-                      ))}
-                    </div>
-                  </div>
-                </MotionNavigationMenuContent>
+                  <RandomLetterSwap
+                    label="Incubation"
+                    staggerDuration={0.02}
+                    transition={{ duration: 0.45, type: "spring" }}
+                    className="inline-block"
+                  />
+                </MotionNavigationMenuLink>
               </MotionNavigationMenuItem>
 
               {/* 5. Team Link */}
@@ -364,55 +226,40 @@ export default function TopNavbar({ onOpenJoinModal }: TopNavbarProps) {
           </MotionNavigationMenu>
         </nav>
 
-        {/* Right: Actions */}
+        {/* Right: Actions & Mobile Navigation */}
         <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <a
             href="#contact"
-            className="hidden xl:inline-block text-xs sm:text-sm font-medium text-muted-foreground hover:text-ecell-gold transition-colors"
+            className="text-xs sm:text-sm font-semibold text-muted-foreground hover:text-ecell-gold transition-colors"
           >
-            Contact Support
+            Contact us
           </a>
 
-          <ThemeToggle />
-
-          {onOpenJoinModal ? (
-            <button
-              onClick={onOpenJoinModal}
-              className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light text-black font-bold text-xs sm:text-sm shadow-[0_4px_18px_rgba(197,161,69,0.35)] hover:brightness-110 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
-            >
-              <span>Join E-Cell</span>
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
-            </button>
-          ) : (
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-ecell-gold-dark via-ecell-gold to-ecell-gold-light text-black font-bold text-xs sm:text-sm shadow-[0_4px_18px_rgba(197,161,69,0.35)] hover:brightness-110 active:scale-95 transition-all whitespace-nowrap"
-            >
-              <span>Join E-Cell</span>
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
-            </a>
-          )}
-
-          {/* Mobile Hamburger Toggle */}
+          {/* Mobile Hamburger Navigation Button (Prominent at top right on mobile) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl text-foreground hover:bg-card border border-border"
-            aria-label="Toggle mobile menu"
+            className="lg:hidden p-2 sm:p-2.5 rounded-xl text-foreground hover:text-ecell-gold bg-card/90 border border-ecell-gold/40 shadow-sm flex items-center justify-center shrink-0 transition-all active:scale-95"
+            aria-label="Toggle navigation menu"
+            id="mobile-nav-toggle-btn"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5 text-ecell-gold" />
+            ) : (
+              <Menu className="w-5 h-5 text-ecell-gold" />
+            )}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Dropdown with Random Letter Swap */}
       {mobileMenuOpen && (
-        <div className="lg:hidden w-full bg-card/95 backdrop-blur-2xl border-b border-border px-6 py-5 shadow-2xl space-y-3 animate-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col space-y-2.5">
+        <div className="lg:hidden w-full bg-card/98 backdrop-blur-2xl border-b border-border px-6 py-5 shadow-2xl space-y-4 animate-in slide-in-from-top-4 duration-200">
+          <nav className="flex flex-col space-y-3">
             {[
               { name: "About", href: "/#about" },
               { name: "Initiatives", href: "/#services" },
-              { name: "E-Summit", href: "/#events", isFeatured: true },
-              { name: "Startups", href: "/#startups" },
+              { name: "Events", href: "/#events" },
+              { name: "Incubation", href: "/#services" },
               { name: "Team", href: "/team" },
               { name: "Blogs", href: "/#recentprojects" },
             ].map((item) => (
@@ -420,22 +267,13 @@ export default function TopNavbar({ onOpenJoinModal }: TopNavbarProps) {
                 key={item.name}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`py-2 text-sm font-semibold transition-colors flex items-center justify-between ${
-                  item.isFeatured
-                    ? "text-ecell-gold font-bold"
-                    : "text-foreground hover:text-ecell-gold"
-                }`}
+                className="py-2 text-sm font-semibold text-foreground hover:text-ecell-gold transition-colors flex items-center justify-between"
               >
                 <RandomLetterSwap
                   label={item.name}
                   staggerDuration={0.02}
                   transition={{ duration: 0.45, type: "spring" }}
                 />
-                {item.isFeatured && (
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-ecell-gold/15 text-ecell-gold border border-ecell-gold/30">
-                    Flagship
-                  </span>
-                )}
               </Link>
             ))}
             <Link
@@ -444,7 +282,7 @@ export default function TopNavbar({ onOpenJoinModal }: TopNavbarProps) {
               className="py-2 text-sm text-muted-foreground hover:text-ecell-gold"
             >
               <RandomLetterSwap
-                label="Contact Support"
+                label="Contact us"
                 staggerDuration={0.015}
                 transition={{ duration: 0.45, type: "spring" }}
               />

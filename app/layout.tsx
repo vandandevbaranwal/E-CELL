@@ -27,14 +27,13 @@ export const metadata: Metadata = {
     "Startups",
     "Incubation",
     "Innovation",
-    "AKTU",
   ],
-  metadataBase: new URL("https://ecell-iet.in"),
+  metadataBase: new URL("https://ietlucknow.netlify.app"),
   openGraph: {
     title: "E-Cell | IET Lucknow",
     description:
       "Entrepreneurship Cell of IET Lucknow — Fostering Innovation & Startup Culture",
-    url: "https://ecell-iet.in",
+    url: "https://ietlucknow.netlify.app",
     siteName: "E-Cell IET Lucknow",
     images: [
       {

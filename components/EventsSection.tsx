@@ -28,7 +28,7 @@ export const EventsSection = () => {
             Upcoming & Past <span className="text-ecell-gold">Events</span>
           </h2>
           <p className="text-sm md:text-base text-muted-foreground">
-            From premier annual summits to intensive weekend buildathons and investor pitch days.
+            From campus hackathons and speaker sessions to intensive weekend buildathons and pitch days.
           </p>
         </motion.div>
 

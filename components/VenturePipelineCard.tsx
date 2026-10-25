@@ -40,42 +40,42 @@ export default function VenturePipelineCard({ onOpenPitchModal }: VenturePipelin
     {
       id: 0,
       title: "1. Ideation",
-      phase: "Phase 1: Chalkboard Concept & Hack-sprints",
+      phase: "Phase 1: Brainstorming & Campus Hackathons",
       icon: Lightbulb,
-      desc: "Converting raw undergraduate problem statements into viable MVP blueprints through weekend design sprints, hackathons, and mentor roundtables.",
-      metric: "5,000+",
-      metricLabel: "Founders & Students Engaged",
-      highlight: "Weekend Ideation Sprints",
+      desc: "Helping students brainstorm and convert initial ideas into working prototypes through campus hackathons, workshops, and peer roundtables.",
+      metric: "100+",
+      metricLabel: "Students in Hackathons",
+      highlight: "Ideation Workshops",
     },
     {
       id: 1,
       title: "2. Incubation",
-      phase: "Phase 2: 24/7 Co-Working & Prototyping Lab",
+      phase: "Phase 2: Campus Workspaces & Mentorship",
       icon: Wrench,
-      desc: "Dedicated incubation co-working space at IET Lucknow campus, cloud compute credits (AWS / Google Cloud), hardware dev kits, and legal entity support.",
-      metric: "20+",
-      metricLabel: "Startups Mentored & Hosted",
+      desc: "Providing access to campus lab facilities, technical guidance, and 1-on-1 feedback from senior students and alumni mentors.",
+      metric: "12+",
+      metricLabel: "Startups Mentored",
       highlight: "Campus Incubation Hub",
     },
     {
       id: 2,
-      title: "3. Seed Funding",
-      phase: "Phase 3: Angel Syndicates & Micro-Grants",
+      title: "3. Pitching",
+      phase: "Phase 3: Pitch Competitions & Grants",
       icon: Coins,
-      desc: "Facilitating pre-seed capital access through Lucknow Angels, alumni investor syndicates, and UP Government Startup Policy incubation grants.",
-      metric: "₹25L+",
-      metricLabel: "Pre-Seed & Grants Pool",
-      highlight: "Angel & Govt Grants",
+      desc: "Preparing student teams for pitch presentations, university innovation grants, and regional startup challenges.",
+      metric: "Pitch Days",
+      metricLabel: "Campus Competitions",
+      highlight: "Pitch Preparation",
     },
     {
       id: 3,
-      title: "4. Scaling",
-      phase: "Phase 4: Series A Acceleration & Demo Days",
+      title: "4. Showcase",
+      phase: "Phase 4: Annual Project Demo Showcase",
       icon: TrendingUp,
-      desc: "Scaling operational momentum across tier-1 national accelerator demo days, industry showcases, and annual flagship E-Summit pitch sessions.",
-      metric: "100+",
-      metricLabel: "Industry Mentors & Leaders",
-      highlight: "E-Summit '25 Flagship",
+      desc: "Showcasing selected student projects at our annual campus showcase in front of invited alumni, professors, and judges.",
+      metric: "Annual",
+      metricLabel: "Project Showcase",
+      highlight: "Annual Demo Day",
     },
   ];
 
@@ -117,10 +117,10 @@ export default function VenturePipelineCard({ onOpenPitchModal }: VenturePipelin
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ecell-gold mb-1">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Interactive Incubation Matrix</span>
+              <span>Incubation Programme</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold font-heading text-foreground tracking-tight">
-              From Classroom Ideation to Seed Funding
+              From Student Idea to Working Startup
             </h3>
           </div>
 
@@ -130,7 +130,7 @@ export default function VenturePipelineCard({ onOpenPitchModal }: VenturePipelin
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span>Live Cohort Status: <strong className="text-ecell-gold">Batch &apos;25 Active</strong></span>
+            <span>Live Cohort: <strong className="text-ecell-gold">Active</strong></span>
           </div>
         </div>
 

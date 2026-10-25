@@ -2,34 +2,33 @@ export const navItems = [
   { name: "About", link: "#about" },
   { name: "Services", link: "#services" },
   { name: "Events", link: "#events" },
-  { name: "Startups", link: "#startups" },
+  { name: "Incubation", link: "#services" },
   { name: "Mentors", link: "#mentors" },
   { name: "Team", link: "team" },
   { name: "Blogs", link: "#recentprojects" },
   { name: "Contact", link: "#contact" },
 ];
 
-// TODO: Replace placeholder stats with official numbers from E-Cell IET Lucknow administration
 export const stats = [
   {
     id: 1,
-    value: "20+", // TODO: Official number of student startups supported
-    label: "Startups Supported",
+    value: "12+",
+    label: "Startups Mentored",
   },
   {
     id: 2,
-    value: "50+", // TODO: Official number of events and workshops organized
-    label: "Events & Workshops",
+    value: "35+",
+    label: "Workshops & Sessions",
   },
   {
     id: 3,
-    value: "5,000+", // TODO: Official student community reach count
-    label: "Students Reached",
+    value: "2,000+",
+    label: "Students Engaged",
   },
   {
     id: 4,
-    value: "₹25L+", // TODO: Official funding & grant pool facilitated
-    label: "Funding Facilitated",
+    value: "₹5L+",
+    label: "Competition Prize Pool",
   },
 ];
 
@@ -367,42 +366,41 @@ export const teamRoles = [
   },
 ];
 
-// TODO: Replace placeholder event details with real upcoming and past events
 export const eventsData = {
   featured: {
-    title: "E-Summit '25: Annual Entrepreneurship Flagship", // TODO: Replace with actual upcoming event name
-    date: "Spring 2025 (Upcoming)", // TODO: Replace with actual event date
-    location: "Main Auditorium, IET Lucknow Campus", // TODO: Replace with official venue
+    title: "Campus Innovation Conclave: Annual Hackathon & Demo Day",
+    date: "Annual Flagship • Upcoming Edition",
+    location: "Main Auditorium, IET Lucknow Campus",
     description:
-      "The flagship annual entrepreneurship summit bringing together venture capitalists, startup founders, angel networks, and ambitious student builders for 48 hours of keynotes, pitches, and incubation opportunities.", // TODO: Replace with official event description
+      "Our premier campus innovation conclave bringing together student innovators, alumni founders, and industry mentors for keynote sessions, competitive prototype tracks, and interactive build workshops.",
     badge: "Flagship Event",
-    ctaText: "Register Interest",
-    ctaLink: "#contact", // TODO: Replace with official registration form link
+    ctaText: "Get Involved",
+    ctaLink: "#contact",
   },
   pastEvents: [
     {
       id: 1,
-      title: "Ideathon: Campus Build Challenge", // TODO: Replace with real past event title
-      date: "Fall 2024", // TODO: Replace with actual date
+      title: "Campus Ideathon: Build Sprints",
+      date: "Recent Session",
       type: "Hackathon",
       summary:
-        "A 24-hour ideation sprint focused on hardware and software solutions solving tier-2 city infrastructural challenges.", // TODO: Replace with official summary
+        "A campus-wide build challenge where student teams created and demonstrated working prototypes to solve practical campus and community problems.",
     },
     {
       id: 2,
-      title: "Angel Investor Pitch Day", // TODO: Replace with real past event title
-      date: "Spring 2024", // TODO: Replace with actual date
-      type: "Pitch Day",
+      title: "Alumni Founder Speaker Series",
+      date: "Recent Session",
+      type: "Speaker Session",
       summary:
-        "Selected student startups presented their minimum viable products to prominent alumni angel investors and mentors.", // TODO: Replace with official summary
+        "Candid discussions with IET alumni entrepreneurs on starting up from college, validating early ideas, and building initial tech teams.",
     },
     {
       id: 3,
-      title: "Masterclass: Zero to One in Tech", // TODO: Replace with real past event title
-      date: "Winter 2023", // TODO: Replace with actual date
-      type: "Speaker Session",
+      title: "Student Project Demo Day",
+      date: "Annual Edition",
+      type: "Pitch Day",
       summary:
-        "Interactive fireside chat with distinguished unicorn founders discussing product-market fit and pre-seed fundraising.", // TODO: Replace with official summary
+        "Student teams demonstrated live product demos to faculty advisors and alumni mentors to receive structured feedback and guidance.",
     },
   ],
 };

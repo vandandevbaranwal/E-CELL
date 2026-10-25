@@ -8,35 +8,35 @@ import { TracingBeam } from "./ui/TracingBeam";
 const aboutCards = [
   {
     id: 1,
-    title: "Mentorship",
-    badge: "Mentorship",
+    title: "Student Community",
+    badge: "Cross-Discipline",
     icon: <Users2 className="w-5 h-5 text-ecell-gold" />,
     description:
-      "We provide aspiring entrepreneurs with access to industry experts, venture capitalists, and successful alumni to guide them on their entrepreneurial journey.",
+      "We bring together student developers, designers, and thinkers across all engineering branches to collaborate on projects and startup ideas.",
   },
   {
     id: 2,
-    title: "Funding",
-    badge: "Funding",
-    icon: <Coins className="w-5 h-5 text-ecell-gold" />,
+    title: "Ideathons & Sprints",
+    badge: "Building",
+    icon: <Trophy className="w-5 h-5 text-ecell-gold" />,
     description:
-      "Our initiatives include startup incubation and investment pitching that help students transform their innovative ideas into successful businesses.",
+      "We run weekend problem-solving sprints and hackathons where students test their ideas, build working prototypes, and receive peer feedback.",
   },
   {
     id: 3,
-    title: "Networking",
-    badge: "Networking",
+    title: "Speaker Sessions",
+    badge: "Practical Talks",
     icon: <Network className="w-5 h-5 text-ecell-gold" />,
     description:
-      "Through workshops, speaker sessions, and networking events, we aim to bridge the gap between theoretical knowledge and real-world startup challenges.",
+      "We host founders, startup engineers, and alumni for candid fireside chats on product validation, bootstrapping, and early lessons.",
   },
   {
     id: 4,
-    title: "Hackathons",
-    badge: "Hackathons",
-    icon: <Trophy className="w-5 h-5 text-ecell-gold" />,
+    title: "Peer & Alumni Mentorship",
+    badge: "Mentorship",
+    icon: <Coins className="w-5 h-5 text-ecell-gold" />,
     description:
-      "Organizing business competitions, hackathons, and leadership programs to help students transform their innovative ideas into successful businesses.",
+      "We connect student teams with alumni and senior mentors who provide guidance on tech stacks, pitch decks, and competition applications.",
   },
 ];
 
@@ -47,7 +47,7 @@ const About = () => {
     <section className="w-full py-16 md:py-24 relative" id="about">
       <TracingBeam>
         <div className="section-container">
-          {/* Header & Short Intro (Text verbatim from existing paragraph) */}
+          {/* Header & Short Intro */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,17 +57,17 @@ const About = () => {
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ecell-gold/10 border border-ecell-gold/20 text-ecell-gold text-xs font-semibold uppercase tracking-wider mb-4">
               <Sparkles className="w-3.5 h-3.5" />
-              Empowering Student Founders
+              Student Innovation Body
             </div>
             <h2 className="heading mb-6 text-foreground">
               About <span className="text-ecell-gold">E-Cell</span>, IET Lucknow
             </h2>
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-              Entrepreneurship Cell (E-Cell) at IET Lucknow is a dynamic student-driven initiative dedicated to fostering innovation, entrepreneurial thinking, and startup culture on campus. Our mission is to inspire and empower students to explore the world of entrepreneurship by providing them with the necessary resources, mentorship, and networking opportunities.
+              We are a student-run team at IET Lucknow committed to creating an active culture of building and problem-solving on campus. We help students turn their ideas into working projects through community meetups, weekend hackathons, and direct mentorship from alumni and practitioners.
             </p>
           </motion.div>
 
-          {/* 4 Cards Grid (Mentorship, Funding, Networking, Hackathons) */}
+          {/* 4 Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {aboutCards.map((card, idx) => (
               <motion.div
@@ -98,18 +98,6 @@ const About = () => {
                   <p className="text-sm text-muted-foreground dark:text-zinc-300 leading-relaxed">
                     {card.description}
                   </p>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-border/80 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-ecell-gold">
-                    {card.id === 1 && "100+ Hours Cohorts"}
-                    {card.id === 2 && "Direct Pitch Access"}
-                    {card.id === 3 && "Global Network"}
-                    {card.id === 4 && "₹5L+ Prize Matrix"}
-                  </span>
-                  <span className="text-xs text-ecell-gold font-bold group-hover:translate-x-1.5 transition-transform">
-                    →
-                  </span>
                 </div>
               </motion.div>
             ))}

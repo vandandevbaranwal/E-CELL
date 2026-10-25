@@ -39,14 +39,11 @@ const Footer = () => {
                 <span className="font-heading font-extrabold text-xl text-ecell-gold tracking-wide group-hover:text-ecell-gold-light transition-colors">
                   E-Cell IET Lucknow
                 </span>
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest leading-none mt-0.5">
-                  EST. 2014 • IET LUCKNOW
-                </span>
               </div>
             </Link>
 
             <p className="text-sm text-zinc-300 leading-relaxed max-w-md">
-              Entrepreneurship Cell is the premier student-run incubation and venture development body of Institute of Engineering and Technology, Lucknow. Affiliated with Dr. A.P.J. Abdul Kalam Technical University (AKTU).
+              Entrepreneurship Cell is the student-run innovation and entrepreneurship initiative of Institute of Engineering and Technology, Lucknow.
             </p>
 
             {/* Quick Action & Social Icon Buttons */}
@@ -62,7 +59,7 @@ const Footer = () => {
               </a>
               <a
                 href="#events"
-                aria-label="E-Summit Media"
+                aria-label="Campus Media"
                 className="w-10 h-10 rounded-xl border border-zinc-700/70 bg-[#12182B] hover:border-ecell-gold hover:bg-ecell-gold/15 text-zinc-300 hover:text-ecell-gold flex items-center justify-center transition-all shadow-sm"
               >
                 <Radio className="w-4 h-4" />
@@ -114,14 +111,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/#events" className="text-ecell-gold font-semibold hover:text-ecell-gold-light flex items-center gap-1.5 inline-flex">
-                  <span>E-Summit 2025</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                <Link href="/#events" className="hover:text-ecell-gold transition-colors inline-block">
+                  Campus Events
                 </Link>
               </li>
               <li>
-                <Link href="/#startups" className="hover:text-ecell-gold transition-colors inline-block">
-                  Venture Fund
+                <Link href="/#services" className="hover:text-ecell-gold transition-colors inline-block">
+                  Student Initiatives
                 </Link>
               </li>
               <li>
@@ -145,22 +141,22 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-zinc-300">
               <li>
                 <Link href="/#services" className="hover:text-ecell-gold transition-colors inline-block">
-                  Campuspreneur Lab
-                </Link>
-              </li>
-              <li>
-                <Link href="/#startups" className="hover:text-ecell-gold transition-colors inline-block">
-                  Angel Pitch Day
+                  Incubation Programme
                 </Link>
               </li>
               <li>
                 <Link href="/#services" className="hover:text-ecell-gold transition-colors inline-block">
-                  Leader Talk Series
+                  Pitch Days &amp; Hackathons
                 </Link>
               </li>
               <li>
                 <Link href="/#services" className="hover:text-ecell-gold transition-colors inline-block">
-                  Startup Internship Fair
+                  Speaker Series
+                </Link>
+              </li>
+              <li>
+                <Link href="/#services" className="hover:text-ecell-gold transition-colors inline-block">
+                  Skill Workshops
                 </Link>
               </li>
               <li>
@@ -195,19 +191,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Credits & Institutional Badges */}
+        {/* Bottom Credits */}
         <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-400 text-center md:text-left">
           <p className="text-zinc-400">
             © {new Date().getFullYear()} Entrepreneurship Cell, Institute of Engineering and Technology, Lucknow. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-medium text-zinc-300">
-            <span className="text-zinc-300">AKTU Affiliated</span>
-            <span className="text-zinc-600">•</span>
-            <span className="text-zinc-300">Startup India Partner</span>
-            <span className="text-zinc-600">•</span>
-            <span className="text-ecell-gold font-bold">Made with Pride at IET Lucknow</span>
-            <span className="text-zinc-600">•</span>
             <span className="text-[11px] text-zinc-400 font-medium">
               Redesigned by: <span className="text-zinc-200 font-semibold">Vandan Dev EE&apos;29</span>
             </span>

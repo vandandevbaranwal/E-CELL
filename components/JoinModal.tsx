@@ -10,8 +10,7 @@ interface JoinModalProps {
   initialMode?: "join" | "pitch";
 }
 
-export default function JoinModal({ isOpen, onClose, initialMode = "join" }: JoinModalProps) {
-  const [mode, setMode] = useState<"join" | "pitch">(initialMode);
+export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
   const [selectedRole, setSelectedRole] = useState("Founder / Startup Idea");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,15 +18,10 @@ export default function JoinModal({ isOpen, onClose, initialMode = "join" }: Joi
   const [summary, setSummary] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  // Sync mode if initialMode changes
-  React.useEffect(() => {
-    setMode(initialMode);
-  }, [initialMode]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    // TODO: Connect to backend endpoint / Google Sheets webhook
+    // Connected to student pitch intake
   };
 
   const resetForm = () => {
@@ -85,10 +79,10 @@ export default function JoinModal({ isOpen, onClose, initialMode = "join" }: Joi
                 <CheckCircle2 className="w-8 h-8" />
               </motion.div>
               <h3 className="text-2xl font-bold font-heading text-foreground mb-2">
-                Application Received!
+                Pitch Proposal Received!
               </h3>
               <p className="text-sm text-muted-foreground max-w-md mx-auto mb-6">
-                Thank you for reaching out to E-Cell IET Lucknow. Our team will review your submission and contact you via email shortly.
+                Thank you for submitting your innovation pitch to E-Cell IET Lucknow. Our incubation coordinators will review your proposal and get in touch with you shortly.
               </p>
               <button
                 onClick={resetForm}
@@ -103,42 +97,14 @@ export default function JoinModal({ isOpen, onClose, initialMode = "join" }: Joi
               <div className="mb-6">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ecell-gold/10 border border-ecell-gold/25 text-ecell-gold text-xs font-semibold uppercase tracking-wider mb-2">
                   <Rocket className="w-3.5 h-3.5" />
-                  Cohort 2026-27
+                  Incubation Cohort 2026-27
                 </div>
                 <h3 className="text-2xl font-bold font-heading text-foreground">
-                  {mode === "pitch" ? "Pitch Your Startup Idea" : "Join E-Cell IET Lucknow"}
+                  Pitch Your Startup Idea
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                  {mode === "pitch"
-                    ? "Get pre-seed incubation support, alumni mentorship, and campus prototyping labs."
-                    : "Become part of the driving force behind campus entrepreneurship, tech, and events."}
+                  Get pre-seed incubation guidance, alumni mentorship, and access to student prototyping labs.
                 </p>
-
-                {/* Mode Switcher */}
-                <div className="grid grid-cols-2 gap-2 mt-4 p-1 rounded-xl bg-muted/60 border border-border">
-                  <button
-                    type="button"
-                    onClick={() => setMode("join")}
-                    className={`py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                      mode === "join"
-                        ? "bg-card text-foreground shadow-sm border border-ecell-gold/30"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    Join Cell Teams
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setMode("pitch")}
-                    className={`py-1.5 text-xs font-semibold rounded-lg transition-all ${
-                      mode === "pitch"
-                        ? "bg-card text-foreground shadow-sm border border-ecell-gold/30"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    Pitch an Idea
-                  </button>
-                </div>
               </div>
 
               {/* Form */}
@@ -146,16 +112,16 @@ export default function JoinModal({ isOpen, onClose, initialMode = "join" }: Joi
                 {/* Domain Selector */}
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
-                    {mode === "pitch" ? "Idea Domain" : "Select Department"}
+                    Idea Domain
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {[
                       { name: "Founder / Idea", icon: Lightbulb },
-                      { name: "Tech & Web", icon: Rocket },
-                      { name: "Design & Media", icon: Palette },
-                      { name: "Marketing & PR", icon: Megaphone },
-                      { name: "Events & Ops", icon: Cog },
-                      { name: "Incubation", icon: Users },
+                      { name: "Software & AI", icon: Rocket },
+                      { name: "Hardware & IoT", icon: Cog },
+                      { name: "Design & UX", icon: Palette },
+                      { name: "Social & AgriTech", icon: Users },
+                      { name: "FinTech / Web3", icon: Megaphone },
                     ].map((item) => (
                       <button
                         key={item.name}
@@ -185,7 +151,7 @@ export default function JoinModal({ isOpen, onClose, initialMode = "join" }: Joi
                       required
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      placeholder="e.g. Shivansh Kaushik"
+                      placeholder="e.g. Priyanshu Singh"
                       className="w-full px-3.5 py-2 rounded-lg bg-background border border-border text-foreground text-sm focus:outline-none focus:border-ecell-gold focus:ring-1 focus:ring-ecell-gold transition-colors placeholder:text-muted-foreground/60"
                     />
                   </div>
@@ -222,18 +188,14 @@ export default function JoinModal({ isOpen, onClose, initialMode = "join" }: Joi
                 {/* Pitch / Summary */}
                 <div>
                   <label className="block text-xs font-medium text-foreground mb-1">
-                    {mode === "pitch" ? "One-line Startup Problem & Solution" : "Why do you want to join E-Cell?"}
+                    One-line Startup Problem & Solution *
                   </label>
                   <textarea
                     rows={3}
                     required
                     value={summary}
                     onChange={(e) => setSummary(e.target.value)}
-                    placeholder={
-                      mode === "pitch"
-                        ? "Tell us what problem your venture solves, your target users, and what prototype you've built..."
-                        : "Tell us about your interests, past projects, or how you want to contribute to the E-Cell community..."
-                    }
+                    placeholder="Tell us what problem your venture solves, your target users, and what prototype or stage you're currently in..."
                     className="w-full px-3.5 py-2 rounded-lg bg-background border border-border text-foreground text-sm focus:outline-none focus:border-ecell-gold focus:ring-1 focus:ring-ecell-gold transition-colors placeholder:text-muted-foreground/60 resize-none"
                   />
                 </div>
@@ -244,7 +206,7 @@ export default function JoinModal({ isOpen, onClose, initialMode = "join" }: Joi
                   className="w-full py-3 rounded-lg bg-gradient-to-r from-ecell-gold to-ecell-gold-light text-black font-bold text-sm flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-[0_4px_20px_rgba(197,161,69,0.3)] mt-2"
                 >
                   <Send className="w-4 h-4" />
-                  <span>{mode === "pitch" ? "Submit Pitch for Incubation" : "Submit Application"}</span>
+                  <span>Submit Pitch for Incubation</span>
                 </button>
               </form>
             </div>

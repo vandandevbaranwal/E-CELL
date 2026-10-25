@@ -78,6 +78,41 @@ export default function AmbientScrollBackground() {
     shouldReduceMotion ? [0, 0] : [0, -60]
   );
 
+  // ── Bottom Dark Zone Scroll Animations (Engaging, Tasteful, Non-Glaring) ──
+  const bottomZoneOpacity = useTransform(
+    scrollYProgress,
+    [0.30, 0.52, 0.88],
+    [0, 0.65, 0.85]
+  );
+
+  const bottomCloud1Y = useTransform(
+    scrollYProgress,
+    [0.3, 1],
+    shouldReduceMotion ? [0, 0] : [90, -70]
+  );
+  const bottomCloud2Y = useTransform(
+    scrollYProgress,
+    [0.3, 1],
+    shouldReduceMotion ? [0, 0] : [-40, 80]
+  );
+
+  const darkParticlesY = useTransform(
+    scrollYProgress,
+    [0.25, 1],
+    shouldReduceMotion ? [0, 0] : [60, -80]
+  );
+
+  const bottomGridOpacity = useTransform(
+    scrollYProgress,
+    [0.35, 0.68, 1],
+    [0, 0.035, 0.055]
+  );
+  const bottomGridY = useTransform(
+    scrollYProgress,
+    [0.35, 1],
+    shouldReduceMotion ? [0, 0] : [25, -25]
+  );
+
   return (
     <div
       ref={containerRef}
@@ -180,6 +215,81 @@ export default function AmbientScrollBackground() {
         style={{ opacity: darkOverlayOpacity }}
         className="absolute inset-0 bg-[#060810]/75 dark:bg-[#070913]/85"
       />
+
+      {/* ── Layer 5: Engaging Bottom Dark-Side Scroll Animation (Tasteful & Non-Glaring) ── */}
+
+      {/* Subtle deep indigo ambient aura (Bottom Left) */}
+      <motion.div
+        style={{
+          opacity: bottomZoneOpacity,
+          y: bottomCloud1Y,
+        }}
+        className="absolute -bottom-10 -left-20 w-[450px] h-[450px] sm:w-[650px] sm:h-[650px] rounded-full bg-indigo-950/25 blur-[130px] pointer-events-none"
+      />
+
+      {/* Subtle muted warm bronze/champagne aura (Bottom Right) */}
+      <motion.div
+        style={{
+          opacity: bottomZoneOpacity,
+          y: bottomCloud2Y,
+        }}
+        className="absolute bottom-16 -right-20 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] rounded-full bg-amber-950/20 blur-[120px] pointer-events-none"
+      />
+
+      {/* Subtle Bottom Perspective Floor Grid */}
+      <motion.div
+        style={{
+          opacity: bottomGridOpacity,
+          y: bottomGridY,
+        }}
+        className="absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(to_right,#C5A145_1px,transparent_1px),linear-gradient(to_bottom,#C5A145_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:linear-gradient(to_bottom,transparent,black_40%,black)] pointer-events-none"
+      />
+
+      {/* Scroll-Responsive Floating Micro-Stars in Dark Zone */}
+      <motion.div
+        style={{
+          opacity: bottomZoneOpacity,
+          y: darkParticlesY,
+        }}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      >
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          {/* Subtle constellation lines */}
+          <g stroke="#C5A145" strokeWidth="0.8" strokeDasharray="3 3" opacity={0.25}>
+            <line x1="15%" y1="50%" x2="26%" y2="65%" />
+            <line x1="26%" y1="65%" x2="38%" y2="58%" />
+            <line x1="72%" y1="52%" x2="85%" y2="68%" />
+            <line x1="85%" y1="68%" x2="78%" y2="82%" />
+            <line x1="20%" y1="78%" x2="32%" y2="90%" />
+            <line x1="65%" y1="84%" x2="88%" y2="88%" />
+          </g>
+
+          {/* Micro Star Nodes */}
+          {[
+            { cx: "15%", cy: "50%", r: 2 },
+            { cx: "26%", cy: "65%", r: 2.5 },
+            { cx: "38%", cy: "58%", r: 1.8 },
+            { cx: "72%", cy: "52%", r: 2 },
+            { cx: "85%", cy: "68%", r: 2.2 },
+            { cx: "78%", cy: "82%", r: 2 },
+            { cx: "20%", cy: "78%", r: 2.5 },
+            { cx: "32%", cy: "90%", r: 1.8 },
+            { cx: "65%", cy: "84%", r: 2.2 },
+            { cx: "88%", cy: "88%", r: 2 },
+            { cx: "50%", cy: "70%", r: 2 },
+            { cx: "44%", cy: "85%", r: 1.8 },
+          ].map((pt, i) => (
+            <circle
+              key={i}
+              cx={pt.cx}
+              cy={pt.cy}
+              r={pt.r}
+              fill="#C5A145"
+              opacity={0.45}
+            />
+          ))}
+        </svg>
+      </motion.div>
     </div>
   );
 }

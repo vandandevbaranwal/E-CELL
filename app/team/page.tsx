@@ -23,6 +23,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import CursorGlow from "@/components/ui/CursorGlow";
+import TeamBackgroundAnimation from "@/components/ui/TeamBackgroundAnimation";
 
 export default function TeamPage() {
   const shouldReduceMotion = useReducedMotion();
@@ -32,12 +33,13 @@ export default function TeamPage() {
     <main className="relative bg-background text-foreground min-h-screen flex flex-col justify-between overflow-x-hidden w-full">
       <ScrollProgress />
       <CursorGlow />
+      <TeamBackgroundAnimation />
       <ScrollToTop />
       
       {/* Edge-to-Edge Sticky TopNavbar */}
       <TopNavbar />
 
-      <div className="w-full pt-10 pb-20 sm:pt-14 sm:pb-24">
+      <div className="relative z-10 w-full pt-10 pb-20 sm:pt-14 sm:pb-24">
         <div className="section-container">
           {/* Top Breadcrumb & Back Link */}
           <motion.div

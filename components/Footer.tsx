@@ -111,7 +111,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/#events" className="hover:text-ecell-gold transition-colors inline-block">
+                <Link href="/events" className="hover:text-ecell-gold transition-colors inline-block">
                   Campus Events
                 </Link>
               </li>

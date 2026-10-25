@@ -360,15 +360,6 @@ export default function TeamPage() {
               </div>
             </motion.section>
           )}
-
-          {/* Official Sign-off Note */}
-          <div className="mt-16 text-center max-w-xl mx-auto p-6 rounded-2xl border border-border bg-card/60 backdrop-blur-md">
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Official appointments notified by{" "}
-              <strong className="text-foreground">Dr. Anurag Verma</strong> (Faculty Advisor, Entrepreneurship Cell)
-              for the academic session 2026-27, Institute of Engineering & Technology, Lucknow.
-            </p>
-          </div>
         </div>
       </div>
 

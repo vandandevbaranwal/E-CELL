@@ -166,7 +166,7 @@ export default function TopNavbar() {
               {/* 3. Events Link */}
               <MotionNavigationMenuItem>
                 <MotionNavigationMenuLink
-                  href="/#events"
+                  href="/events"
                   className="px-3.5 py-2 text-sm font-medium text-foreground/85 hover:text-ecell-gold focus:text-ecell-gold transition-colors rounded-full"
                 >
                   <RandomLetterSwap
@@ -258,7 +258,7 @@ export default function TopNavbar() {
             {[
               { name: "About", href: "/#about" },
               { name: "Initiatives", href: "/#services" },
-              { name: "Events", href: "/#events" },
+              { name: "Events", href: "/events" },
               { name: "Incubation", href: "/#services" },
               { name: "Team", href: "/team" },
               { name: "Blogs", href: "/#recentprojects" },

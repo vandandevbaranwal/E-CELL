@@ -111,15 +111,15 @@ export const mentors = [
   {
     id: 3,
     name: "Dr. Anurag Verma",
-    role: "Faculty Advisor & Founder, E-Cell IET Lucknow",
+    role: "Faculty Coordinator, E-Cell IET Lucknow",
     image: "/anurag.jpg",
-    alt: "Dr. Anurag Verma - Faculty Advisor, E-Cell IET Lucknow",
+    alt: "Dr. Anurag Verma - Faculty Coordinator, E-Cell IET Lucknow",
     bio: "Pioneered the entrepreneurial movement at IET Lucknow, dedicated to mentoring budding founders and bridging academia with startups.",
     linkedin: "https://www.linkedin.com/in/anurag-verma-phd-%F0%9F%92%A1-59a1bbbb/",
   },
 ];
 
-// Official E-Cell Core Team (Session 2026-27) - Appointed by Dr. Anurag Verma (Faculty Advisor)
+// Official E-Cell Core Team (Session 2026-27) - Appointed by Dr. Anurag Verma (Faculty Coordinator)
 export const coreTeam = [
   {
     id: 1,
@@ -236,7 +236,7 @@ export const executiveTeam = [
   {
     id: 2,
     name: "Trishala Singh",
-    position: "Co-Coordinator",
+    position: "Coordinator",
     branch: "CHE",
     year: "Third",
     domain: "Coordination",

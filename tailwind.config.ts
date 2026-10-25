@@ -193,6 +193,14 @@ const config = {
             opacity: "0.15",
           },
         },
+        marquee: {
+          from: { transform: "translateX(0%)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        marqueeReverse: {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -208,6 +216,10 @@ const config = {
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         "gold-pulse": "gold-pulse 4s ease-in-out infinite",
+        marquee: "marquee 40s linear infinite",
+        "marquee-fast": "marquee 25s linear infinite",
+        "marquee-reverse": "marqueeReverse 40s linear infinite",
+        "marquee-reverse-fast": "marqueeReverse 25s linear infinite",
       },
     },
   },

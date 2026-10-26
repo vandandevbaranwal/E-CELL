@@ -177,7 +177,7 @@ export const EventsSection = () => {
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-background via-background/60 to-transparent z-10 pointer-events-none" />
 
         {/* Row 1: Sliding Smoothly from Left to Right */}
-        <div className="flex w-max space-x-5 animate-marquee-reverse group-hover:[animation-play-state:paused] mb-5">
+        <div className="flex w-max space-x-5 animate-marquee-reverse group-hover:[animation-play-state:paused] mb-5 [transform:translateZ(0)]">
           {[...MARQUEE_ROW_1, ...MARQUEE_ROW_1, ...MARQUEE_ROW_1].map((item, idx) => (
             <Link
               key={`row1-${idx}`}
@@ -187,7 +187,7 @@ export const EventsSection = () => {
               <GlowCard
                 glowColor="gold"
                 customSize
-                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
+                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/95 dark:bg-[#0D1220] md:backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
               >
                 {/* Image Preview with Hover Zoom */}
                 <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">
@@ -228,7 +228,7 @@ export const EventsSection = () => {
         </div>
 
         {/* Row 2: Sliding Smoothly from Left to Right (Alternative Speed) */}
-        <div className="flex w-max space-x-5 animate-marquee-reverse-fast group-hover:[animation-play-state:paused]">
+        <div className="flex w-max space-x-5 animate-marquee-reverse-fast group-hover:[animation-play-state:paused] [transform:translateZ(0)]">
           {[...MARQUEE_ROW_2, ...MARQUEE_ROW_2, ...MARQUEE_ROW_2].map((item, idx) => (
             <Link
               key={`row2-${idx}`}
@@ -238,7 +238,7 @@ export const EventsSection = () => {
               <GlowCard
                 glowColor="gold"
                 customSize
-                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
+                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/95 dark:bg-[#0D1220] md:backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
               >
                 {/* Image Preview with Hover Zoom */}
                 <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">

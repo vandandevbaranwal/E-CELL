@@ -95,7 +95,7 @@ const Services = () => {
                 ease: "easeOut",
               }}
               whileHover={shouldReduceMotion ? {} : { y: -4, transition: { duration: 0.2 } }}
-              className={`rounded-2xl border border-border/80 dark:border-border/60 bg-card dark:bg-[#0D1220]/95 p-6 sm:p-7 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/50 hover:shadow-[0_12px_36px_rgba(197,161,69,0.14)] flex flex-col justify-between ${item.area}`}
+              className={`rounded-2xl border border-border/80 dark:border-border/60 bg-card dark:bg-[#0D1220]/95 p-6 sm:p-7 md:backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/50 hover:shadow-[0_12px_36px_rgba(197,161,69,0.14)] flex flex-col justify-between ${item.area}`}
             >
               <div>
                 <div className="flex items-center justify-between mb-5">

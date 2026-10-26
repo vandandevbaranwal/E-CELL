@@ -193,7 +193,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
           rounded-2xl 
           relative 
           shadow-[0_1rem_2rem_-1rem_black] 
-          backdrop-blur-[5px]
+          md:backdrop-blur-[5px]
           ${className}
         `}
       >

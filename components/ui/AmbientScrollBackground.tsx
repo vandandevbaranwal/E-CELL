@@ -117,7 +117,7 @@ export default function AmbientScrollBackground() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none [transform:translateZ(0)]"
     >
       {/* ── Layer 1: Ambient Gold Spotlight Beam (Hero Glow -> Dims on Scroll) ── */}
       <motion.div
@@ -128,15 +128,15 @@ export default function AmbientScrollBackground() {
           y: "-50%",
           opacity: spotlightOpacity,
         }}
-        className="absolute w-[450px] h-[450px] sm:w-[650px] sm:h-[650px] lg:w-[850px] lg:h-[850px] rounded-full bg-gradient-to-tr from-ecell-gold/25 via-ecell-gold-light/15 to-transparent blur-[120px] dark:from-ecell-gold/20 dark:via-ecell-gold-dark/15"
+        className="absolute w-[360px] h-[360px] sm:w-[650px] sm:h-[650px] lg:w-[850px] lg:h-[850px] rounded-full bg-gradient-to-tr from-ecell-gold/25 via-ecell-gold-light/15 to-transparent blur-[60px] md:blur-[120px] dark:from-ecell-gold/20 dark:via-ecell-gold-dark/15"
       />
 
-      {/* Secondary Cool Ambient Glow at Top */}
+      {/* Secondary Cool Ambient Glow at Top (Desktop only) */}
       <motion.div
         style={{
           opacity: secondaryGlowOpacity,
         }}
-        className="absolute left-[10%] top-[15%] w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full bg-blue-500/10 dark:bg-indigo-950/25 blur-[140px]"
+        className="hidden md:block absolute left-[10%] top-[15%] w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full bg-blue-500/10 dark:bg-indigo-950/25 blur-[140px]"
       />
 
       {/* ── Layer 2: Subtle Constellation Grid (Gently Fades on Scroll) ── */}
@@ -145,10 +145,10 @@ export default function AmbientScrollBackground() {
         className="absolute inset-x-0 -top-40 h-[120%] bg-[radial-gradient(#C5A145_1px,transparent_1px)] [background-size:40px_40px]"
       />
 
-      {/* Dynamic Constellation Vector Overlay (Hero area only) */}
+      {/* Dynamic Constellation Vector Overlay (Desktop only) */}
       <motion.svg
         style={{ opacity: spotlightOpacity }}
-        className="absolute inset-0 w-full h-full"
+        className="hidden md:block absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
@@ -187,14 +187,14 @@ export default function AmbientScrollBackground() {
           scale: logoScale,
           opacity: logoOpacity,
         }}
-        className="absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 lg:right-16 xl:right-24 w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[440px] md:h-[440px] lg:w-[500px] lg:h-[500px]"
+        className="absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 lg:right-16 xl:right-24 w-[240px] h-[240px] sm:w-[340px] sm:h-[340px] md:w-[440px] md:h-[440px] lg:w-[500px] lg:h-[500px]"
       >
-        {/* Soft, gentle gold backlight (not over-bright) */}
-        <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-ecell-gold/20 via-ecell-gold-light/10 to-transparent blur-[50px] transform scale-80" />
+        {/* Soft, gentle gold backlight */}
+        <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-ecell-gold/20 via-ecell-gold-light/10 to-transparent blur-[30px] md:blur-[50px] transform scale-80" />
 
-        {/* Concentric Gold Orbit Rings */}
-        <div className="absolute inset-[-4%] rounded-full border border-ecell-gold/20 dark:border-ecell-gold/15 border-dashed animate-[spin_100s_linear_infinite]" />
-        <div className="absolute inset-[-14%] rounded-full border border-ecell-gold/15 dark:border-ecell-gold/10 animate-[spin_70s_linear_infinite_reverse]" />
+        {/* Concentric Gold Orbit Rings (Desktop only to prevent continuous mobile repaint) */}
+        <div className="hidden md:block absolute inset-[-4%] rounded-full border border-ecell-gold/20 dark:border-ecell-gold/15 border-dashed animate-[spin_100s_linear_infinite]" />
+        <div className="hidden md:block absolute inset-[-14%] rounded-full border border-ecell-gold/15 dark:border-ecell-gold/10 animate-[spin_70s_linear_infinite_reverse]" />
 
         {/* Full Official E-Cell Logo Insignia - Clean & Crisp */}
         <div className="relative w-full h-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
@@ -218,40 +218,40 @@ export default function AmbientScrollBackground() {
 
       {/* ── Layer 5: Engaging Bottom Dark-Side Scroll Animation (Tasteful & Non-Glaring) ── */}
 
-      {/* Subtle deep indigo ambient aura (Bottom Left) */}
+      {/* Subtle deep indigo ambient aura (Bottom Left - Desktop only) */}
       <motion.div
         style={{
           opacity: bottomZoneOpacity,
           y: bottomCloud1Y,
         }}
-        className="absolute -bottom-10 -left-20 w-[450px] h-[450px] sm:w-[650px] sm:h-[650px] rounded-full bg-indigo-950/25 blur-[130px] pointer-events-none"
+        className="hidden md:block absolute -bottom-10 -left-20 w-[450px] h-[450px] sm:w-[650px] sm:h-[650px] rounded-full bg-indigo-950/25 blur-[130px] pointer-events-none"
       />
 
-      {/* Subtle muted warm bronze/champagne aura (Bottom Right) */}
+      {/* Subtle muted warm bronze/champagne aura (Bottom Right - Desktop only) */}
       <motion.div
         style={{
           opacity: bottomZoneOpacity,
           y: bottomCloud2Y,
         }}
-        className="absolute bottom-16 -right-20 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] rounded-full bg-amber-950/20 blur-[120px] pointer-events-none"
+        className="hidden md:block absolute bottom-16 -right-20 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] rounded-full bg-amber-950/20 blur-[120px] pointer-events-none"
       />
 
-      {/* Subtle Bottom Perspective Floor Grid */}
+      {/* Subtle Bottom Perspective Floor Grid (Desktop only) */}
       <motion.div
         style={{
           opacity: bottomGridOpacity,
           y: bottomGridY,
         }}
-        className="absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(to_right,#C5A145_1px,transparent_1px),linear-gradient(to_bottom,#C5A145_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:linear-gradient(to_bottom,transparent,black_40%,black)] pointer-events-none"
+        className="hidden md:block absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(to_right,#C5A145_1px,transparent_1px),linear-gradient(to_bottom,#C5A145_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:linear-gradient(to_bottom,transparent,black_40%,black)] pointer-events-none"
       />
 
-      {/* Scroll-Responsive Floating Micro-Stars in Dark Zone */}
+      {/* Scroll-Responsive Floating Micro-Stars in Dark Zone (Desktop only) */}
       <motion.div
         style={{
           opacity: bottomZoneOpacity,
           y: darkParticlesY,
         }}
-        className="absolute inset-0 w-full h-full pointer-events-none"
+        className="hidden md:block absolute inset-0 w-full h-full pointer-events-none"
       >
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           {/* Subtle constellation lines */}

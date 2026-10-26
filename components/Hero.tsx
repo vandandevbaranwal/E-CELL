@@ -34,15 +34,15 @@ const Hero = ({ onOpenPitchModal }: HeroProps) => {
         aria-hidden="true"
       >
         {/* Central Luminous Gold Flare */}
-        <div className="w-[500px] h-[500px] md:w-[800px] md:h-[800px] rounded-full bg-gradient-to-tr from-ecell-gold/20 via-ecell-gold-light/10 to-transparent blur-[110px] dark:from-ecell-gold/25 dark:via-ecell-gold/10" />
+        <div className="w-[360px] h-[360px] md:w-[800px] md:h-[800px] rounded-full bg-gradient-to-tr from-ecell-gold/20 via-ecell-gold-light/10 to-transparent blur-[60px] md:blur-[110px] dark:from-ecell-gold/25 dark:via-ecell-gold/10" />
 
-        {/* Orbit Ring 1 (Concentric slow clockwise rotate) */}
-        <div className="absolute w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full border border-ecell-gold/15 dark:border-ecell-gold/10 border-dashed animate-[spin_60s_linear_infinite]">
+        {/* Orbit Ring 1 (Concentric slow clockwise rotate - Desktop only) */}
+        <div className="hidden md:block absolute w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full border border-ecell-gold/15 dark:border-ecell-gold/10 border-dashed animate-[spin_60s_linear_infinite]">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-ecell-gold shadow-[0_0_12px_#C5A145]" />
         </div>
 
-        {/* Orbit Ring 2 (Concentric counter-clockwise rotate) */}
-        <div className="absolute w-[420px] h-[420px] md:w-[680px] md:h-[680px] rounded-full border border-ecell-gold/20 dark:border-ecell-gold/15 animate-[spin_45s_linear_infinite_reverse]">
+        {/* Orbit Ring 2 (Concentric counter-clockwise rotate - Desktop only) */}
+        <div className="hidden md:block absolute w-[420px] h-[420px] md:w-[680px] md:h-[680px] rounded-full border border-ecell-gold/20 dark:border-ecell-gold/15 animate-[spin_45s_linear_infinite_reverse]">
           <div className="absolute bottom-4 right-1/4 w-2 h-2 rounded-full bg-ecell-gold-light shadow-[0_0_8px_#D4B96A]" />
         </div>
 

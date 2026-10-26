@@ -35,7 +35,7 @@ const Jordon = () => {
               key={mentor.id}
               glowColor="gold"
               customSize
-              className="w-full rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 p-6 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/60 hover:shadow-[0_12px_36px_rgba(197,161,69,0.18)] flex flex-col items-center text-center justify-between h-full"
+              className="w-full rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 p-6 md:backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/60 hover:shadow-[0_12px_36px_rgba(197,161,69,0.18)] flex flex-col items-center text-center justify-between h-full"
             >
               <div className="flex flex-col items-center w-full flex-1">
                 {/* Photo with Gold Frame */}

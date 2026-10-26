@@ -97,7 +97,7 @@ export default function AchievementsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-3xl bg-card/80 border border-ecell-gold/30 p-6 sm:p-8 lg:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden"
+          className="relative rounded-3xl bg-card/90 dark:bg-[#0D1220]/95 border border-ecell-gold/30 p-6 sm:p-8 lg:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] md:backdrop-blur-xl overflow-hidden"
         >
           {/* Ambient Corner Accents */}
           <div className="absolute -top-32 -right-32 w-72 h-72 bg-ecell-gold/15 rounded-full blur-3xl pointer-events-none" />

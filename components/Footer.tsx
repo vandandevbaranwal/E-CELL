@@ -195,7 +195,15 @@ const Footer = () => {
         <div className="pt-6 flex flex-col items-center justify-center gap-2.5 text-xs text-zinc-400 text-center">
           <div className="flex items-center justify-center font-medium">
             <span className="text-xs sm:text-sm text-zinc-400 font-medium">
-              Redesigned by: <span className="text-ecell-gold font-semibold">Vandan Dev EE&apos;29</span>
+              Redesigned by:{" "}
+              <a
+                href="https://www.linkedin.com/in/vandandevbaranwal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ecell-gold font-semibold hover:underline hover:text-ecell-gold-light transition-colors"
+              >
+                Vandan Dev EE&apos;29
+              </a>
             </span>
           </div>
 

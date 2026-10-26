@@ -40,6 +40,12 @@ const GlowCard: React.FC<GlowCardProps> = ({
   const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Only bind pointer tracking on fine pointer (mouse/trackpad) devices.
+    // Touch devices don't have hover, and firing 40+ pointermove listeners on touch throttles mobile FPS.
+    if (typeof window === 'undefined' || !window.matchMedia('(pointer: fine)').matches) {
+      return;
+    }
+
     const syncPointer = (e: MouseEvent | PointerEvent) => {
       const { clientX: x, clientY: y } = e;
       
@@ -94,7 +100,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundAttachment: 'fixed',
       border: 'var(--border-size) solid var(--backup-border)',
       position: 'relative' as const,
-      touchAction: 'none' as const,
+      touchAction: 'pan-y' as const,
     };
 
     // Add width and height if provided
@@ -162,6 +168,15 @@ const GlowCard: React.FC<GlowCardProps> = ({
     [data-glow] > [data-glow]::before {
       inset: -10px;
       border-width: 10px;
+    }
+
+    /* On touch/mobile devices, disable expensive desktop filter layers to ensure 60fps smooth scrolling */
+    @media (hover: none) and (pointer: coarse) {
+      [data-glow]::before,
+      [data-glow]::after,
+      [data-glow] [data-glow] {
+        display: none !important;
+      }
     }
   `;
 

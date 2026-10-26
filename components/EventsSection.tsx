@@ -14,6 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { ALL_EVENTS } from "@/data/events";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 // Curated Marquee Row 1 (Track 1)
 const MARQUEE_ROW_1 = [
@@ -181,41 +182,47 @@ export const EventsSection = () => {
             <Link
               key={`row1-${idx}`}
               href="/events"
-              className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between shrink-0 hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300 group/card"
+              className="shrink-0 group/card block"
             >
-              {/* Image Preview with Hover Zoom */}
-              <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="320px"
-                  className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-                />
-                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-ecell-gold border border-ecell-gold/30">
-                  {item.category}
+              <GlowCard
+                glowColor="gold"
+                customSize
+                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
+              >
+                {/* Image Preview with Hover Zoom */}
+                <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="320px"
+                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                  />
+                  <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-ecell-gold border border-ecell-gold/30">
+                    {item.category}
+                  </div>
+                  <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-medium text-foreground border border-white/10 flex items-center gap-1">
+                    <Calendar className="w-2.5 h-2.5 text-ecell-gold" />
+                    <span>{item.date}</span>
+                  </div>
                 </div>
-                <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-medium text-foreground border border-white/10 flex items-center gap-1">
-                  <Calendar className="w-2.5 h-2.5 text-ecell-gold" />
-                  <span>{item.date}</span>
-                </div>
-              </div>
 
-              {/* Title & Crux */}
-              <div className="px-1">
-                <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-1 group-hover/card:text-ecell-gold transition-colors line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed mb-2">
-                  {item.crux}
-                </p>
-                <div className="flex items-center justify-between pt-1 border-t border-border/40 text-[11px]">
-                  <span className="font-semibold text-ecell-gold truncate">{item.highlight}</span>
-                  <span className="text-muted-foreground group-hover/card:text-foreground flex items-center gap-0.5 shrink-0">
-                    Details <ChevronRight className="w-3 h-3" />
-                  </span>
+                {/* Title & Crux */}
+                <div className="px-1">
+                  <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-1 group-hover/card:text-ecell-gold transition-colors line-clamp-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed mb-2">
+                    {item.crux}
+                  </p>
+                  <div className="flex items-center justify-between pt-1 border-t border-border/40 text-[11px]">
+                    <span className="font-semibold text-ecell-gold truncate">{item.highlight}</span>
+                    <span className="text-muted-foreground group-hover/card:text-foreground flex items-center gap-0.5 shrink-0">
+                      Details <ChevronRight className="w-3 h-3" />
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </GlowCard>
             </Link>
           ))}
         </div>
@@ -226,41 +233,47 @@ export const EventsSection = () => {
             <Link
               key={`row2-${idx}`}
               href="/events"
-              className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/90 backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between shrink-0 hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300 group/card"
+              className="shrink-0 group/card block"
             >
-              {/* Image Preview with Hover Zoom */}
-              <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="320px"
-                  className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-                />
-                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-ecell-gold border border-ecell-gold/30">
-                  {item.category}
+              <GlowCard
+                glowColor="gold"
+                customSize
+                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
+              >
+                {/* Image Preview with Hover Zoom */}
+                <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="320px"
+                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                  />
+                  <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-ecell-gold border border-ecell-gold/30">
+                    {item.category}
+                  </div>
+                  <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-medium text-foreground border border-white/10 flex items-center gap-1">
+                    <Calendar className="w-2.5 h-2.5 text-ecell-gold" />
+                    <span>{item.date}</span>
+                  </div>
                 </div>
-                <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-medium text-foreground border border-white/10 flex items-center gap-1">
-                  <Calendar className="w-2.5 h-2.5 text-ecell-gold" />
-                  <span>{item.date}</span>
-                </div>
-              </div>
 
-              {/* Title & Crux */}
-              <div className="px-1">
-                <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-1 group-hover/card:text-ecell-gold transition-colors line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed mb-2">
-                  {item.crux}
-                </p>
-                <div className="flex items-center justify-between pt-1 border-t border-border/40 text-[11px]">
-                  <span className="font-semibold text-ecell-gold truncate">{item.highlight}</span>
-                  <span className="text-muted-foreground group-hover/card:text-foreground flex items-center gap-0.5 shrink-0">
-                    Details <ChevronRight className="w-3 h-3" />
-                  </span>
+                {/* Title & Crux */}
+                <div className="px-1">
+                  <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-1 group-hover/card:text-ecell-gold transition-colors line-clamp-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed mb-2">
+                    {item.crux}
+                  </p>
+                  <div className="flex items-center justify-between pt-1 border-t border-border/40 text-[11px]">
+                    <span className="font-semibold text-ecell-gold truncate">{item.highlight}</span>
+                    <span className="text-muted-foreground group-hover/card:text-foreground flex items-center gap-0.5 shrink-0">
+                      Details <ChevronRight className="w-3 h-3" />
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </GlowCard>
             </Link>
           ))}
         </div>

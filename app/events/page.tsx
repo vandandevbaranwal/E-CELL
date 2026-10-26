@@ -28,6 +28,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import CursorGlow from "@/components/ui/CursorGlow";
 import EventsBackgroundAnimation from "@/components/ui/EventsBackgroundAnimation";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const CATEGORIES = [
   { id: "all", label: "All Events" },
@@ -200,10 +201,15 @@ export default function EventsPage() {
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.3) }}
-                className="group relative rounded-2xl border border-border/80 bg-card/85 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between overflow-hidden hover:border-ecell-gold/50 hover:shadow-[0_12px_40px_rgba(0,0,0,0.35),0_0_20px_rgba(197,161,69,0.1)] transition-all duration-300"
+                className="h-full flex"
               >
-                {/* Subtle top ambient glow */}
-                <div className="absolute top-0 right-0 w-44 h-44 bg-ecell-gold/5 rounded-full blur-3xl pointer-events-none group-hover:bg-ecell-gold/10 transition-colors" />
+                <GlowCard
+                  glowColor="gold"
+                  customSize
+                  className="w-full group relative rounded-2xl border border-border/80 bg-card/85 dark:bg-[#0D1220]/95 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between overflow-hidden hover:border-ecell-gold/60 hover:shadow-[0_12px_40px_rgba(0,0,0,0.35),0_0_20px_rgba(197,161,69,0.15)] transition-all duration-300"
+                >
+                  {/* Subtle top ambient glow */}
+                  <div className="absolute top-0 right-0 w-44 h-44 bg-ecell-gold/5 rounded-full blur-3xl pointer-events-none group-hover:bg-ecell-gold/10 transition-colors" />
 
                 <div>
                   {/* Top Header Row: Category Badge & Date */}
@@ -288,6 +294,7 @@ export default function EventsPage() {
                     </div>
                   </div>
                 )}
+                </GlowCard>
               </motion.div>
             ))}
           </div>

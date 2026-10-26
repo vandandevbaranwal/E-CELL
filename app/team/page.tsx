@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import { mentors, coreTeam, executiveTeam } from "@/data";
+import { GlowCard } from "@/components/ui/spotlight-card";
 import TopNavbar from "@/components/TopNavbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
@@ -124,9 +125,11 @@ export default function TeamPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {mentors.map((mentor) => (
-                  <div
+                  <GlowCard
                     key={mentor.id}
-                    className="rounded-2xl border border-border bg-card p-6 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/40 hover:shadow-lg flex flex-col items-center text-center justify-between h-full"
+                    glowColor="gold"
+                    customSize
+                    className="w-full rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 p-6 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/60 hover:shadow-[0_12px_36px_rgba(197,161,69,0.18)] flex flex-col items-center text-center justify-between h-full"
                   >
                     <div className="flex flex-col items-center w-full flex-1">
                       <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-ecell-gold/40 shadow-md mb-5 shrink-0">
@@ -154,7 +157,7 @@ export default function TeamPage() {
                       </div>
                     </div>
 
-                    {/* Connect on LinkedIn / Official Profile */}
+                    {/* Connect on LinkedIn / Official Profile - Circular Pill Shape */}
                     <div className="pt-4 border-t border-border mt-auto w-full flex justify-center">
                       {"linkedin" in mentor && mentor.linkedin ? (
                         <a
@@ -162,9 +165,9 @@ export default function TeamPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`${mentor.name} on LinkedIn`}
-                          className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
+                          className="inline-flex items-center justify-center gap-2 py-2 px-5 rounded-full border border-ecell-gold/30 bg-ecell-gold/5 hover:border-ecell-gold hover:bg-ecell-gold hover:text-black text-foreground transition-all duration-200 text-xs font-semibold shadow-sm hover:scale-105 active:scale-95 group/pill"
                         >
-                          <Linkedin className="w-3.5 h-3.5 text-ecell-gold" />
+                          <Linkedin className="w-3.5 h-3.5 text-ecell-gold group-hover/pill:text-black transition-colors" />
                           <span>Connect on LinkedIn</span>
                         </a>
                       ) : "profileUrl" in mentor && mentor.profileUrl ? (
@@ -173,14 +176,14 @@ export default function TeamPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`${mentor.name} Official IET Profile`}
-                          className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
+                          className="inline-flex items-center justify-center gap-2 py-2 px-5 rounded-full border border-ecell-gold/30 bg-ecell-gold/5 hover:border-ecell-gold hover:bg-ecell-gold hover:text-black text-foreground transition-all duration-200 text-xs font-semibold shadow-sm hover:scale-105 active:scale-95 group/pill"
                         >
-                          <ExternalLink className="w-3.5 h-3.5 text-ecell-gold" />
+                          <ExternalLink className="w-3.5 h-3.5 text-ecell-gold group-hover/pill:text-black transition-colors" />
                           <span>Official IET Profile</span>
                         </a>
                       ) : null}
                     </div>
-                  </div>
+                  </GlowCard>
                 ))}
               </div>
             </motion.section>

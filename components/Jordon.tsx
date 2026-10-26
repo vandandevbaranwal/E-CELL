@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, Linkedin, ExternalLink } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { mentors } from "@/data";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 const Jordon = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -29,23 +30,16 @@ const Jordon = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6 items-stretch">
-          {mentors.map((mentor, idx) => (
-            <motion.div
+          {mentors.map((mentor) => (
+            <GlowCard
               key={mentor.id}
-              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.5,
-                delay: shouldReduceMotion ? 0 : idx * 0.12,
-                ease: "easeOut",
-              }}
-              whileHover={shouldReduceMotion ? {} : { y: -6, transition: { duration: 0.2 } }}
-              className="rounded-2xl border border-border/80 dark:border-border/60 bg-card dark:bg-[#0D1220]/95 p-7 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/50 hover:shadow-[0_12px_36px_rgba(197,161,69,0.16)] flex flex-col items-center text-center justify-between"
+              glowColor="gold"
+              customSize
+              className="w-full rounded-2xl border border-border/80 bg-card/90 dark:bg-[#0D1220]/95 p-6 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/60 hover:shadow-[0_12px_36px_rgba(197,161,69,0.18)] flex flex-col items-center text-center justify-between h-full"
             >
               <div className="flex flex-col items-center w-full flex-1">
                 {/* Photo with Gold Frame */}
-                <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-2 border-ecell-gold/40 shadow-lg shadow-ecell-gold/10 mb-5 shrink-0">
+                <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-ecell-gold/40 shadow-lg shadow-ecell-gold/10 mb-5 shrink-0">
                   <Image
                     src={mentor.image}
                     alt={mentor.alt}
@@ -70,7 +64,7 @@ const Jordon = () => {
                 </div>
               </div>
 
-              {/* Social Connect Button */}
+              {/* Social Connect Circular Pill Button */}
               <div className="pt-4 border-t border-border mt-auto w-full flex justify-center">
                 {"linkedin" in mentor && mentor.linkedin ? (
                   <a
@@ -78,9 +72,9 @@ const Jordon = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${mentor.name} on LinkedIn`}
-                    className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
+                    className="inline-flex items-center justify-center gap-2 py-2 px-5 rounded-full border border-ecell-gold/30 bg-ecell-gold/5 hover:border-ecell-gold hover:bg-ecell-gold hover:text-black text-foreground transition-all duration-200 text-xs font-semibold shadow-sm hover:scale-105 active:scale-95 group/pill"
                   >
-                    <Linkedin className="w-3.5 h-3.5 text-ecell-gold" />
+                    <Linkedin className="w-3.5 h-3.5 text-ecell-gold group-hover/pill:text-black transition-colors" />
                     <span>Connect on LinkedIn</span>
                   </a>
                 ) : "profileUrl" in mentor && mentor.profileUrl ? (
@@ -89,14 +83,14 @@ const Jordon = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${mentor.name} Official IET Profile`}
-                    className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
+                    className="inline-flex items-center justify-center gap-2 py-2 px-5 rounded-full border border-ecell-gold/30 bg-ecell-gold/5 hover:border-ecell-gold hover:bg-ecell-gold hover:text-black text-foreground transition-all duration-200 text-xs font-semibold shadow-sm hover:scale-105 active:scale-95 group/pill"
                   >
-                    <ExternalLink className="w-3.5 h-3.5 text-ecell-gold" />
+                    <ExternalLink className="w-3.5 h-3.5 text-ecell-gold group-hover/pill:text-black transition-colors" />
                     <span>Official IET Profile</span>
                   </a>
                 ) : null}
               </div>
-            </motion.div>
+            </GlowCard>
           ))}
         </div>
 

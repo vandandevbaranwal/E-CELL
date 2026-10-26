@@ -132,8 +132,8 @@ export default function AchievementsSection() {
             </div>
 
             {/* Right Big Stat Box */}
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
-              <div className="p-5 rounded-2xl bg-gradient-to-br from-ecell-gold/15 via-background to-background border border-ecell-gold/40 shadow-inner flex flex-col justify-center">
+            <div className="lg:col-span-4 flex flex-col justify-center">
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-ecell-gold/15 via-background to-background border border-ecell-gold/40 shadow-inner flex flex-col justify-center">
                 <div className="text-xs uppercase tracking-widest text-ecell-gold font-bold mb-1">
                   National Standing
                 </div>
@@ -143,16 +143,6 @@ export default function AchievementsSection() {
                 </div>
                 <div className="text-xs text-muted-foreground mt-2">
                   E-Summit 2025 • Indian Institute of Technology, Bombay
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-muted/40 border border-border flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
-                  <Trophy className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-foreground">3rd Position Overall</div>
-                  <div className="text-[11px] text-muted-foreground">Deciphering the Labyrinth Challenge</div>
                 </div>
               </div>
             </div>
@@ -173,10 +163,10 @@ export default function AchievementsSection() {
             <div className="p-4 rounded-2xl bg-muted/20 border border-border/70 hover:border-ecell-gold/40 transition-colors">
               <div className="flex items-center gap-2 text-ecell-gold font-semibold text-xs uppercase tracking-wider mb-2">
                 <Sparkles className="w-4 h-4" />
-                <span>Podium Performance</span>
+                <span>National Finalists Stage</span>
               </div>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Four team members cleared Round 1 of &quot;Deciphering the Labyrinth&quot;, with Harsh Aditya topping Round 2 and Samir Sahu clinching 3rd place nationally.
+                Qualified through competitive multi-stage national evaluations to represent IET Lucknow on the prestigious IIT Bombay stage.
               </p>
             </div>
 

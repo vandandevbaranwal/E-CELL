@@ -122,58 +122,63 @@ export default function TeamPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {mentors.map((mentor) => (
                   <div
                     key={mentor.id}
-                    className="rounded-2xl border border-border bg-card p-6 sm:p-7 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/40 hover:shadow-lg flex flex-col items-center text-center justify-between"
+                    className="rounded-2xl border border-border bg-card p-6 backdrop-blur-xl transition-all duration-300 hover:border-ecell-gold/40 hover:shadow-lg flex flex-col items-center text-center justify-between h-full"
                   >
-                    <div className="flex flex-col items-center w-full">
-                      <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-ecell-gold/40 shadow-md mb-5">
+                    <div className="flex flex-col items-center w-full flex-1">
+                      <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-ecell-gold/40 shadow-md mb-5 shrink-0">
                         <Image
                           src={mentor.image}
                           alt={mentor.alt}
                           fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                           className="object-cover"
                         />
                       </div>
-                      <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-1">
-                        {mentor.name}
-                      </h3>
-                      <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-ecell-gold/10 text-ecell-gold border border-ecell-gold/20 mb-3">
-                        {mentor.role}
-                      </span>
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                        {mentor.bio}
-                      </p>
 
-                      {/* Connect on LinkedIn / Official Profile */}
-                      <div className="pt-4 border-t border-border mt-4 w-full flex justify-center">
-                        {"linkedin" in mentor && mentor.linkedin ? (
-                          <a
-                            href={mentor.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${mentor.name} on LinkedIn`}
-                            className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
-                          >
-                            <Linkedin className="w-3.5 h-3.5 text-ecell-gold" />
-                            <span>Connect on LinkedIn</span>
-                          </a>
-                        ) : "profileUrl" in mentor && mentor.profileUrl ? (
-                          <a
-                            href={mentor.profileUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${mentor.name} Official IET Profile`}
-                            className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5 text-ecell-gold" />
-                            <span>Official IET Profile</span>
-                          </a>
-                        ) : null}
+                      {/* Name Container */}
+                      <div className="h-14 flex items-center justify-center w-full mb-1">
+                        <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground text-center">
+                          {mentor.name}
+                        </h3>
                       </div>
+
+                      {/* Role Container */}
+                      <div className="h-14 flex items-center justify-center w-full mb-4">
+                        <span className="inline-flex items-center justify-center text-center text-xs font-semibold px-3 py-1.5 rounded-full bg-ecell-gold/10 text-ecell-gold border border-ecell-gold/20 leading-snug">
+                          {mentor.role}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Connect on LinkedIn / Official Profile */}
+                    <div className="pt-4 border-t border-border mt-auto w-full flex justify-center">
+                      {"linkedin" in mentor && mentor.linkedin ? (
+                        <a
+                          href={mentor.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${mentor.name} on LinkedIn`}
+                          className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
+                        >
+                          <Linkedin className="w-3.5 h-3.5 text-ecell-gold" />
+                          <span>Connect on LinkedIn</span>
+                        </a>
+                      ) : "profileUrl" in mentor && mentor.profileUrl ? (
+                        <a
+                          href={mentor.profileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${mentor.name} Official IET Profile`}
+                          className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-border bg-muted/40 hover:border-ecell-gold/50 hover:bg-ecell-gold/10 hover:text-ecell-gold text-muted-foreground transition-all duration-200 text-xs font-medium"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5 text-ecell-gold" />
+                          <span>Official IET Profile</span>
+                        </a>
+                      ) : null}
                     </div>
                   </div>
                 ))}

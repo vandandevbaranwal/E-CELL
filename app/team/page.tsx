@@ -124,7 +124,7 @@ export default function TeamPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {mentors.map((mentor) => (
+                {mentors.map((mentor, mIdx) => (
                   <GlowCard
                     key={mentor.id}
                     glowColor="gold"
@@ -137,7 +137,8 @@ export default function TeamPage() {
                           src={mentor.image}
                           alt={mentor.alt}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                          loading={mIdx < 2 ? "eager" : "lazy"}
+                          sizes="144px"
                           className="object-cover"
                         />
                       </div>

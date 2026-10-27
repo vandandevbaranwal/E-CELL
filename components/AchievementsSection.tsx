@@ -200,8 +200,9 @@ export default function AchievementsSection() {
                 src={activePhoto.src}
                 alt={activePhoto.title}
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 1200px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
@@ -244,8 +245,9 @@ export default function AchievementsSection() {
                     src={photo.src}
                     alt={photo.title}
                     fill
+                    loading="lazy"
                     className="object-cover"
-                    sizes="200px"
+                    sizes="(max-width: 768px) 80px, 160px"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
                 </button>

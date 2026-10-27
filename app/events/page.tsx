@@ -283,6 +283,7 @@ export default function EventsPage() {
                             src={imgSrc}
                             alt={`${event.title} Glimpse ${imgIdx + 1}`}
                             fill
+                            loading={index < 2 && imgIdx === 0 ? "eager" : "lazy"}
                             sizes="(max-width: 768px) 30vw, 15vw"
                             className="object-cover transition-transform duration-300 group-hover/img:scale-110"
                           />

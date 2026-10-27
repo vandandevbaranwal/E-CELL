@@ -44,7 +44,8 @@ const Jordon = () => {
                     src={mentor.image}
                     alt={mentor.alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    loading="lazy"
+                    sizes="144px"
                     className="object-cover"
                   />
                 </div>

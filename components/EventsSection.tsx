@@ -1,23 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Calendar,
-  MapPin,
-  ArrowRight,
   Sparkles,
   Trophy,
-  ExternalLink,
+  ArrowRight,
   ChevronRight,
 } from "lucide-react";
-import { ALL_EVENTS } from "@/data/events";
 import { GlowCard } from "@/components/ui/spotlight-card";
 
+interface MarqueeItem {
+  title: string;
+  date: string;
+  category: string;
+  crux: string;
+  image: string;
+  highlight: string;
+}
+
 // Curated Marquee Row 1 (Track 1)
-const MARQUEE_ROW_1 = [
+const MARQUEE_ROW_1: MarqueeItem[] = [
   {
     title: "TEDxIETLucknow 2025",
     date: "25th Nov, 2025",
@@ -77,7 +83,7 @@ const MARQUEE_ROW_1 = [
 ];
 
 // Curated Marquee Row 2 (Track 2)
-const MARQUEE_ROW_2 = [
+const MARQUEE_ROW_2: MarqueeItem[] = [
   {
     title: "TEDx Keynotes & Lamp Lighting",
     date: "25th Nov, 2025",
@@ -136,11 +142,291 @@ const MARQUEE_ROW_2 = [
   },
 ];
 
-export const EventsSection = () => {
-  const shouldReduceMotion = useReducedMotion();
+interface MarqueeTrackProps {
+  items: MarqueeItem[];
+  direction?: "forward" | "reverse";
+  pixelsPerSecond?: number;
+  isSectionInView: boolean;
+}
+
+const MarqueeTrack: React.FC<MarqueeTrackProps> = ({
+  items,
+  direction = "forward",
+  pixelsPerSecond = 65,
+  isSectionInView,
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef(0);
+  const isDragging = useRef(false);
+  const isTouching = useRef(false);
+  const isHovered = useRef(false);
+  const startX = useRef(0);
+  const startScroll = useRef(0);
+  const dragDistance = useRef(0);
+  const lastTimeRef = useRef<number | null>(null);
+  const initialized = useRef(false);
+  const resumeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Duplicate 2x max (Rule: 2x duplication max in marquee)
+  const duplicatedItems = useMemo(() => [...items, ...items], [items]);
+
+  const wrapPos = (pos: number, half: number) => {
+    if (half <= 0) return pos;
+    let p = pos % half;
+    if (p < 0) p += half;
+    return p;
+  };
+
+  // Initialize reverse row at scrollWidth / 2 so reverse motion has headroom without jumping
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || initialized.current) return;
+
+    const measureAndInit = () => {
+      const half = el.scrollWidth / 2;
+      if (half > 0) {
+        if (direction === "reverse") {
+          posRef.current = half;
+          el.scrollLeft = half;
+        } else {
+          posRef.current = 0;
+          el.scrollLeft = 0;
+        }
+        initialized.current = true;
+      }
+    };
+
+    measureAndInit();
+    const frameId = requestAnimationFrame(measureAndInit);
+    return () => cancelAnimationFrame(frameId);
+  }, [direction]);
+
+  // Delta-time based smooth RAF Auto-scroll loop
+  useEffect(() => {
+    let animId: number;
+
+    const tick = (now: number) => {
+      if (lastTimeRef.current === null) {
+        lastTimeRef.current = now;
+      }
+      const dt = Math.min((now - lastTimeRef.current) / 1000, 0.1);
+      lastTimeRef.current = now;
+
+      const el = containerRef.current;
+      // Continuously auto-scroll when section is in view and user is not actively dragging or touching
+      if (
+        el &&
+        isSectionInView &&
+        !isDragging.current &&
+        !isTouching.current
+      ) {
+        const halfWidth = el.scrollWidth / 2;
+        if (halfWidth > 0) {
+          // Slow down slightly on hover for readability, but keep moving
+          const speedMultiplier = isHovered.current ? 0.35 : 1.0;
+          const delta = pixelsPerSecond * dt * speedMultiplier;
+
+          if (direction === "forward") {
+            posRef.current += delta;
+          } else {
+            posRef.current -= delta;
+          }
+
+          posRef.current = wrapPos(posRef.current, halfWidth);
+          el.scrollLeft = posRef.current;
+        }
+      }
+
+      animId = requestAnimationFrame(tick);
+    };
+
+    animId = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(animId);
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
+  }, [direction, pixelsPerSecond, isSectionInView]);
+
+  // Mobile Touch handlers
+  const handleTouchStart = () => {
+    isTouching.current = true;
+    dragDistance.current = 0;
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+  };
+
+  const handleTouchEnd = () => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      isTouching.current = false;
+    }, 500);
+  };
+
+  // Sync internal position on native touch / wheel scroll
+  const handleScroll = () => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (isDragging.current || isTouching.current) {
+      posRef.current = el.scrollLeft;
+    }
+  };
+
+  // Desktop mouse pointer drag handlers
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    isDragging.current = true;
+    startX.current = e.clientX;
+    startScroll.current = posRef.current;
+    dragDistance.current = 0;
+
+    try {
+      el.setPointerCapture(e.pointerId);
+    } catch {}
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    const deltaX = e.clientX - startX.current;
+    dragDistance.current = Math.abs(deltaX);
+
+    const half = el.scrollWidth / 2;
+    posRef.current = wrapPos(startScroll.current - deltaX, half);
+    el.scrollLeft = posRef.current;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    const el = containerRef.current;
+    if (el) {
+      try {
+        el.releasePointerCapture(e.pointerId);
+      } catch {}
+    }
+  };
+
+  const handlePointerCancel = () => {
+    isDragging.current = false;
+  };
+
+  // Prevent accidental link navigation on drag
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (dragDistance.current > 6) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
 
   return (
-    <section className="w-full py-16 md:py-24 relative overflow-hidden" id="events">
+    <div
+      ref={containerRef}
+      onScroll={handleScroll}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
+      onMouseEnter={() => {
+        isHovered.current = true;
+      }}
+      onMouseLeave={() => {
+        isHovered.current = false;
+      }}
+      className="flex w-full overflow-x-auto space-x-5 py-2 [touch-action:pan-y] cursor-grab active:cursor-grabbing select-none [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      style={{
+        WebkitOverflowScrolling: "touch",
+      }}
+    >
+      {duplicatedItems.map((item, idx) => (
+        <Link
+          key={`${item.title}-${idx}`}
+          href="/events"
+          onClick={handleCardClick}
+          draggable={false}
+          className="shrink-0 group/card block select-none"
+        >
+          <GlowCard
+            glowColor="gold"
+            customSize
+            className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/95 dark:bg-[#0D1220] md:backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300 pointer-events-auto select-none"
+          >
+            {/* Image Preview with Hover Zoom */}
+            <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50 select-none">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                loading={idx < 3 ? "eager" : "lazy"}
+                priority={idx < 2}
+                draggable={false}
+                sizes="(max-width: 768px) 280px, 320px"
+                className="object-cover transition-transform duration-500 group-hover/card:scale-105 select-none pointer-events-none"
+              />
+              <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-ecell-gold border border-ecell-gold/30 pointer-events-none">
+                {item.category}
+              </div>
+              <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-medium text-foreground border border-white/10 flex items-center gap-1 pointer-events-none">
+                <Calendar className="w-2.5 h-2.5 text-ecell-gold" />
+                <span>{item.date}</span>
+              </div>
+            </div>
+
+            {/* Title & Crux */}
+            <div className="px-1 select-none">
+              <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-1 group-hover/card:text-ecell-gold transition-colors line-clamp-1">
+                {item.title}
+              </h3>
+              <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed mb-2">
+                {item.crux}
+              </p>
+              <div className="flex items-center justify-between pt-1 border-t border-border/40 text-[11px]">
+                <span className="font-semibold text-ecell-gold truncate">{item.highlight}</span>
+                <span className="text-muted-foreground group-hover/card:text-foreground flex items-center gap-0.5 shrink-0">
+                  Details <ChevronRight className="w-3 h-3" />
+                </span>
+              </div>
+            </div>
+          </GlowCard>
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+export const EventsSection = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(true);
+
+  // IntersectionObserver to pause auto-scroll loops when section is off-screen
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "250px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="w-full py-16 md:py-24 relative overflow-hidden scroll-mt-24"
+      id="events"
+    >
       {/* Background Arena Spotlight & Stage Acoustics */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-gradient-to-r from-ecell-gold/10 via-cyan-500/5 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-ecell-gold/30 to-transparent pointer-events-none" />
@@ -171,111 +457,29 @@ export const EventsSection = () => {
       </div>
 
       {/* ── Marquee Bands Container (Full-Bleed Across Entire Screen Width) ── */}
-      <div className="relative w-full overflow-hidden py-4 group">
+      <div className="relative w-full overflow-hidden py-4">
         {/* Left & Right Subtle Fade Vignettes */}
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-background via-background/60 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-background via-background/60 to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Sliding Smoothly from Left to Right */}
-        <div className="flex w-max space-x-5 animate-marquee-reverse group-hover:[animation-play-state:paused] mb-5 [transform:translateZ(0)]">
-          {[...MARQUEE_ROW_1, ...MARQUEE_ROW_1, ...MARQUEE_ROW_1].map((item, idx) => (
-            <Link
-              key={`row1-${idx}`}
-              href="/events"
-              className="shrink-0 group/card block"
-            >
-              <GlowCard
-                glowColor="gold"
-                customSize
-                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/95 dark:bg-[#0D1220] md:backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
-              >
-                {/* Image Preview with Hover Zoom */}
-                <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="320px"
-                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-                  />
-                  <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-ecell-gold border border-ecell-gold/30">
-                    {item.category}
-                  </div>
-                  <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-medium text-foreground border border-white/10 flex items-center gap-1">
-                    <Calendar className="w-2.5 h-2.5 text-ecell-gold" />
-                    <span>{item.date}</span>
-                  </div>
-                </div>
-
-                {/* Title & Crux */}
-                <div className="px-1">
-                  <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-1 group-hover/card:text-ecell-gold transition-colors line-clamp-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed mb-2">
-                    {item.crux}
-                  </p>
-                  <div className="flex items-center justify-between pt-1 border-t border-border/40 text-[11px]">
-                    <span className="font-semibold text-ecell-gold truncate">{item.highlight}</span>
-                    <span className="text-muted-foreground group-hover/card:text-foreground flex items-center gap-0.5 shrink-0">
-                      Details <ChevronRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </div>
-              </GlowCard>
-            </Link>
-          ))}
+        {/* Row 1: Sliding Smoothly in Direction 1 (Forward), User-Scrollable */}
+        <div className="mb-5">
+          <MarqueeTrack
+            items={MARQUEE_ROW_1}
+            direction="forward"
+            pixelsPerSecond={65}
+            isSectionInView={isInView}
+          />
         </div>
 
-        {/* Row 2: Sliding Smoothly from Left to Right (Alternative Speed) */}
-        <div className="flex w-max space-x-5 animate-marquee-reverse-fast group-hover:[animation-play-state:paused] [transform:translateZ(0)]">
-          {[...MARQUEE_ROW_2, ...MARQUEE_ROW_2, ...MARQUEE_ROW_2].map((item, idx) => (
-            <Link
-              key={`row2-${idx}`}
-              href="/events"
-              className="shrink-0 group/card block"
-            >
-              <GlowCard
-                glowColor="gold"
-                customSize
-                className="relative w-[280px] sm:w-[320px] rounded-2xl border border-border/80 bg-card/95 dark:bg-[#0D1220] md:backdrop-blur-xl p-3.5 overflow-hidden flex flex-col justify-between hover:border-ecell-gold/60 hover:shadow-[0_10px_30px_rgba(197,161,69,0.2)] transition-all duration-300"
-              >
-                {/* Image Preview with Hover Zoom */}
-                <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-3 border border-border/50">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="320px"
-                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-                  />
-                  <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-bold text-ecell-gold border border-ecell-gold/30">
-                    {item.category}
-                  </div>
-                  <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[10px] font-medium text-foreground border border-white/10 flex items-center gap-1">
-                    <Calendar className="w-2.5 h-2.5 text-ecell-gold" />
-                    <span>{item.date}</span>
-                  </div>
-                </div>
-
-                {/* Title & Crux */}
-                <div className="px-1">
-                  <h3 className="font-heading font-bold text-sm sm:text-base text-foreground mb-1 group-hover/card:text-ecell-gold transition-colors line-clamp-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed mb-2">
-                    {item.crux}
-                  </p>
-                  <div className="flex items-center justify-between pt-1 border-t border-border/40 text-[11px]">
-                    <span className="font-semibold text-ecell-gold truncate">{item.highlight}</span>
-                    <span className="text-muted-foreground group-hover/card:text-foreground flex items-center gap-0.5 shrink-0">
-                      Details <ChevronRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </div>
-              </GlowCard>
-            </Link>
-          ))}
+        {/* Row 2: Sliding Smoothly in Direction 2 (Reverse), User-Scrollable */}
+        <div>
+          <MarqueeTrack
+            items={MARQUEE_ROW_2}
+            direction="reverse"
+            pixelsPerSecond={80}
+            isSectionInView={isInView}
+          />
         </div>
       </div>
 

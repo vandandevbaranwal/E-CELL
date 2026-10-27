@@ -180,35 +180,37 @@ export default function AmbientScrollBackground() {
       </motion.svg>
 
       {/* ── Layer 3: Iconic E-Cell Logo Watermark (Refined, Non-glaring, Fades on Scroll) ── */}
-      <motion.div
-        style={{
-          y: logoY,
-          rotate: logoRotate,
-          scale: logoScale,
-          opacity: logoOpacity,
-        }}
-        className="absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 lg:right-16 xl:right-24 w-[240px] h-[240px] sm:w-[340px] sm:h-[340px] md:w-[440px] md:h-[440px] lg:w-[500px] lg:h-[500px]"
-      >
-        {/* Soft, gentle gold backlight */}
-        <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-ecell-gold/20 via-ecell-gold-light/10 to-transparent blur-[30px] md:blur-[50px] transform scale-80" />
+      <div className="absolute top-20 sm:top-24 md:top-28 left-0 right-0 md:left-auto md:right-8 lg:right-16 xl:right-24 flex justify-center md:block pointer-events-none">
+        <motion.div
+          style={{
+            y: logoY,
+            rotate: logoRotate,
+            scale: logoScale,
+            opacity: logoOpacity,
+          }}
+          className="relative w-[min(70vw,320px)] aspect-square md:w-[440px] md:h-[440px] lg:w-[500px] lg:h-[500px] pointer-events-none opacity-[0.32]"
+        >
+          {/* Soft, gentle gold backlight */}
+          <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-ecell-gold/20 via-ecell-gold-light/10 to-transparent blur-[30px] md:blur-[50px] transform scale-80 pointer-events-none" />
 
-        {/* Concentric Gold Orbit Rings (Desktop only to prevent continuous mobile repaint) */}
-        <div className="hidden md:block absolute inset-[-4%] rounded-full border border-ecell-gold/20 dark:border-ecell-gold/15 border-dashed animate-[spin_100s_linear_infinite]" />
-        <div className="hidden md:block absolute inset-[-14%] rounded-full border border-ecell-gold/15 dark:border-ecell-gold/10 animate-[spin_70s_linear_infinite_reverse]" />
+          {/* Concentric Gold Orbit Rings (Desktop only to prevent continuous mobile repaint) */}
+          <div className="hidden md:block absolute inset-[-4%] rounded-full border border-ecell-gold/20 dark:border-ecell-gold/15 border-dashed animate-[spin_100s_linear_infinite] pointer-events-none" />
+          <div className="hidden md:block absolute inset-[-14%] rounded-full border border-ecell-gold/15 dark:border-ecell-gold/10 animate-[spin_70s_linear_infinite_reverse] pointer-events-none" />
 
-        {/* Full Official E-Cell Logo Insignia - Clean & Crisp */}
-        <div className="relative w-full h-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]">
-          <Image
-            src="/ecell-logo-hd.png"
-            alt="E-Cell IET Lucknow Official Emblem Watermark"
-            fill
-            priority
-            unoptimized={true}
-            sizes="(max-width: 768px) 340px, 500px"
-            className="object-contain pointer-events-none brightness-100 contrast-105 [image-rendering:-webkit-optimize-contrast]"
-          />
-        </div>
-      </motion.div>
+          {/* Full Official E-Cell Logo Insignia - Clean & Crisp */}
+          <div className="relative w-full h-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)] pointer-events-none">
+            <Image
+              src="/ecell-logo-hd.png"
+              alt="E-Cell IET Lucknow Official Emblem Watermark"
+              fill
+              priority
+              quality={75}
+              sizes="(max-width: 768px) 280px, 500px"
+              className="object-contain pointer-events-none brightness-100 contrast-105 [image-rendering:-webkit-optimize-contrast]"
+            />
+          </div>
+        </motion.div>
+      </div>
 
       {/* ── Layer 4: Deep Dark Transition Veil ("To the Dark Side") ── */}
       <motion.div
